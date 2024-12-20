@@ -15,6 +15,6 @@ export const useOtpValidation = () => {
 
 export const useSignUp = () => {
     return useMutation({
-        mutationFn: (data) => signUp(data.email, data.password),
+        mutationFn: (data) => signUp(data.email, data.password, data.role),
     })
 }

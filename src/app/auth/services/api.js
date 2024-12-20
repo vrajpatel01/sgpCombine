@@ -8,10 +8,10 @@ export const otpValidation = async (email, otp) => {
     return (await axiosInstance.post('/public/auth/forgot-password/verify', { email, otp })).data
 }
 
-export const signUp = async (email, password) => {
+export const signUp = async (email, password, role) => {
     return (await axiosInstance.post(`/public/auth/register`, {
         email,
         password,
-        role: 'faculty'
+        role
     })).data
 }

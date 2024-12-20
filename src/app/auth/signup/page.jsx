@@ -16,6 +16,7 @@ import { registerValidator } from "@/validator/auth.validator";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
 import { AxiosError } from "axios";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function SignUpScreen() {
     const router = useRouter()
@@ -26,11 +27,12 @@ export default function SignUpScreen() {
         defaultValues: {
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            role: ''
         }
     })
     const onSubmit = (value) => {
-        signUp.mutate({ email: value.email, password: value.password }, {
+        signUp.mutate({ email: value.email, password: value.password, role: value.role }, {
             onError: (error) => {
                 if (error instanceof AxiosError) {
                     return toast.error(error.response.data?.message)
@@ -95,6 +97,28 @@ export default function SignUpScreen() {
                                 <FormLabel className="text-lg">Confirm Password</FormLabel>
                                 <FormControl>
                                     <PasswordInput className="w-full h-14 text-xl" {...field} placeholder="•••••••••" />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )} />
+                    <FormField
+                        control={form.control}
+                        name="role"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel className="text-lg">Confirm Password</FormLabel>
+                                <FormControl>
+                                    <Select {...field} onValueChange={(value) => field.onChange(value)}>
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Select role" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="hod">Hod</SelectItem>
+                                            <SelectItem value="faculty">Faculty</SelectItem>
+                                            {/* <SelectItem value="coordinator">Coordinator</SelectItem> */}
+                                            <SelectItem value="student">Student</SelectItem>
+                                        </SelectContent>
+                                    </Select>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
