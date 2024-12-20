@@ -28,18 +28,5 @@ export const useValidRouter = () => {
         }
     }
 
-    // if (user?.role === ROLES.hod.name && pathname !== '/hod') {
-    //     router.replace('/hod');
-    // }
-    // if (user?.role === ROLES.coordinator.name && pathname !== '/coordinator') {
-    //     router.replace('/coordinator');
-    // }
-    // if (user?.role === ROLES.faculty.name && pathname !== '/faculty') {
-    //     router.replace('/faculty');
-    // }
-    // if (user?.role === ROLES.student.name && pathname !== '/student') {
-    //     router.replace('/student');
-    // }
-
     return { session }
 }
