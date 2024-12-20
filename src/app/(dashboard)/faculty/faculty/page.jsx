@@ -20,7 +20,7 @@ import { Search } from "lucide-react";
 import { Permissions } from "@/lib/permissions";
 import { useSession } from "next-auth/react";
 import AddFacultyModel from "./models/addFacultyModel";
-import AddFacultyByExcelModel from "./models/AddFacultyByExcelModel";
+import AddFacultyByExcelModel from "./models/addFacultyByExcelModel";
 
 export default function Faculty() {
     const [addFacultyModel, setAddFacultyModel] = useState(false)
