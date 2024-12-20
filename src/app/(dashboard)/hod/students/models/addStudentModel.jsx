@@ -26,7 +26,6 @@ export default function AddStudentModel({ data, setData }) {
     })
 
     const onSubmit = (value) => {
-        console.log(value);
         const data = {
             email: value.email,
             phoneNumber: value.phoneNumber,

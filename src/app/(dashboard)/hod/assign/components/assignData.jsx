@@ -5,7 +5,6 @@ import Error from "@/components/shared/error";
 
 export default function AssignData() {
     const faculties = useGetFaulty()
-    console.log(faculties?.data?.faculties.length);
 
     if (faculties.isError) return <Error message="Having some problem to fetch data." />
     if (faculties.isSuccess && faculties?.data?.faculties.length === 0) {

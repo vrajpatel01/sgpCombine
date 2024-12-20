@@ -9,7 +9,6 @@ import { useDeassignGroup } from "../../../services/mutation"
 
 export default function GroupInfo({ facultyId }) {
     const groups = useGetFacultyGroups(facultyId)
-    console.log(groups);
     if (groups.isSuccess && !groups.data.success) {
         return null
     }

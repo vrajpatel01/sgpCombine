@@ -17,8 +17,6 @@ import { Button } from "@/components/ui/button";
 export default function AssignFacultyToGroup({ params, searchParams }) {
     const [assignGroupModel, setAssignGroupModel] = useState(false)
     const router = useRouter();
-    // const facultyCode = params.facultyId;
-    // console.log(params);
 
     const facultyId = searchParams.fid;
     return (

@@ -20,12 +20,9 @@ export default function StudentData({ selectedItem, setSelectedItem }) {
     const [studentDeleteModel, setStudentDeleteModel] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState({})
     const [editStudentModel, setEditStudentModel] = useState(false)
-    // const students = useGetStudentWithPagination(currentPage, 15)
     const students = useGetStudents();
 
     if (students.isError) return <Error message="Having some problem to fetch data." />
-
-    console.log(students.data);
 
     if (students.isSuccess && students?.data?.students.length === 0) return <Error message="Currently not exists any account." />
 

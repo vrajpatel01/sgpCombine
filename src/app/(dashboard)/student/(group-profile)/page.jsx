@@ -20,12 +20,12 @@ import { useForm } from "react-hook-form";
 import { GroupInfoContext } from "./context/useGroupInfoContext";
 import { ProjectInformationSkeleton } from "@/components/group-profile/skeleton/projectInfo";
 import { useSetProjectDetails, useUpdateProjectDetails } from "./services/mutation";
-import {AlertCircle, CircleX, Loader2} from "lucide-react";
+import { AlertCircle, CircleX, Loader2 } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 import { ErrorComp } from "@/components/error";
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
-import {isGroupSegment} from "next/dist/shared/lib/segment";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { isGroupSegment } from "next/dist/shared/lib/segment";
 
 export default function Dashboard() {
     const { toast } = useToast()
@@ -48,7 +48,6 @@ export default function Dashboard() {
         if (projectDetails?.data?.success !== true) {
             return saveProjectDetails.mutate(data, {
                 onSuccess: async (data) => {
-                    console.log(data);
                     toast({
                         title: 'Project created',
                         description: 'Group project details created successfully',
@@ -141,13 +140,13 @@ export default function Dashboard() {
     return (
         <div className="grid gap-6">
             {!isLocked && isValidDate &&
-            <Alert variant="warn">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Action Required</AlertTitle>
-                <AlertDescription>
-                    Your are missed the group locking date so please meet your project guid for further information.
-                </AlertDescription>
-            </Alert>}
+                <Alert variant="warn">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Action Required</AlertTitle>
+                    <AlertDescription>
+                        Your are missed the group locking date so please meet your project guid for further information.
+                    </AlertDescription>
+                </Alert>}
             <Card x-chunk="dashboard-04-chunk-1">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>

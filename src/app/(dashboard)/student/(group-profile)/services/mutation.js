@@ -42,11 +42,7 @@ export const useSetGroupLock = () => {
     return useMutation({
         mutationFn: (data) => setGroupLock(data),
         onSuccess: (data) => {
-            console.log('data: ', data);
             queryClient.invalidateQueries('project-details');
-        },
-        onError: (error) => {
-            console.log('error: ', error);
         }
     })
 }

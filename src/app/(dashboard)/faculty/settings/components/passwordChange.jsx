@@ -40,7 +40,6 @@ export default function PasswordChange() {
                         })
                     },
                     onError: (error) => {
-                        console.log(error);
                     }
                 })
             }
@@ -54,7 +53,6 @@ export default function PasswordChange() {
         const delayDebounceFn = setTimeout(() => {
             if (password.currentPassword === password.newPassword && password.newPassword.length > 0) {
                 toast.error('New password can not be the same as the current password.')
-                console.log('hello')
             }
         }, 1000)
         if (password.newPassword === password.confirmPassword &&

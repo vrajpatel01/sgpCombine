@@ -5,7 +5,6 @@ import { useGetAllGroups } from "../../assign/services/query";
 
 export default function GroupsData() {
     const group = useGetAllGroups();
-    console.log(group.data);
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {group.isPending && Array(20).fill(0).map((_, i) => (

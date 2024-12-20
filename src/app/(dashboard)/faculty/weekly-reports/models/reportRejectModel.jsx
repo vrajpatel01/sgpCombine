@@ -34,9 +34,6 @@ export default function ReportRejectModel({ model, setModel }) {
                 }
                 await queryClient.invalidateQueries(['groupSubmissionData', week, groupId])
                 return toast.success(data.message);
-            },
-            onError: (error) => {
-                console.log(error);
             }
         })
     }

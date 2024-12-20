@@ -13,8 +13,6 @@ export const changePassword = async (data) => {
 
 export const me = async () => {
     const session = await getSession()
-    console.log(session?.user?.token);
-
     return (await axiosInstance.get('/student/me', {
         headers: {
             'Content-Type': 'application/json',

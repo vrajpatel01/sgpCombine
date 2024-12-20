@@ -38,13 +38,6 @@ export default function GroupMembersPage() {
             </CardContent>
         )
     }
-
-    // console.log('start', dates.start)
-    // console.log('end', dates.end)
-    // console.log('isLocked', projectDetails.data.data.isLocked)
-    // console.log('isLeader', projectDetails.data.data.isLeader)
-    // console.log('total', dates.start && dates.end && !projectDetails?.data?.data?.isLocked && projectDetails?.data?.data?.isLeader)
-
     return (
         <div className="overflow-hidden">
             <Dialog>

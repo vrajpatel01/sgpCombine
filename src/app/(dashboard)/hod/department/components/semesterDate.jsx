@@ -64,7 +64,6 @@ export default function SemesterDate({ state, setState, setSemesterDateModel, se
                                 <Popover>
                                     <PopoverTrigger className="flex justify-start items-center w-full sm:max-w-min gap-3 bg-white !rounded-md border-[0.5px] border-opacity-50 !border-border p-3 focus:ring-primary-text focus:ring-2 focus:border-primary-text focus:bg-primary-text focus:bg-opacity-5 focus:text-primary-text">
                                         <CiCalendarDate className="text-xl" />
-                                        {console.log(semesterDate.start)}
                                         <div type="text" className="border-none outline-none whitespace-nowrap">{semesterDate.start != undefined ? semesterDate.start?.toDateString() : 'pick a date'}</div>
                                     </PopoverTrigger>
                                     <PopoverContent className="p-0 border-none">

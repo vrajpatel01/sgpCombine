@@ -29,7 +29,6 @@ export default function SearchPage() {
     }, [search]);
 
     useEffect(() => {
-        console.log("Role:", role);
         if (role && typeof role === 'string') {
             router.replace(`/hod/search?role=${role}`);
         }

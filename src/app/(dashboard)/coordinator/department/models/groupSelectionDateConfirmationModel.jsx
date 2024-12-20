@@ -1,11 +1,6 @@
-import { useState, useEffect } from "react"
-import toast from "react-hot-toast"
-
+import { useState } from "react"
 // models
 import PopUpModel from "@/components/models/popUpModel"
-
-// icons
-import { MdDelete } from "react-icons/md";
 
 // components
 import InputField from "@/components/shared/inputField"
@@ -13,26 +8,8 @@ import Button from "@/components/shared/button"
 
 export default function GroupSelectionDateConfirmationModel({ data, setData, selectedDates }) {
     const [message, setMessage] = useState('')
-
-    // const deleteInstitute = useDeleteInstitute()
-
-    // useEffect(() => {
-    // if (deleteInstitute.isSuccess) {
-    //     setData(false)
-    //     setInstitute('')
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [deleteInstitute.isSuccess]);
-
     const handleDeleteConfirmation = async (e) => {
         e.preventDefault()
-        // if (institute === '') {
-        //     return toast.error('Enter the institute name to delete.')
-        // }
-        // if (institute !== instituteData.name) {
-        //     return toast.error('Please match institute name to delete.')
-        // }
-        // deleteInstitute.mutate(instituteData.id)
     }
     return (
         <PopUpModel
@@ -48,7 +25,6 @@ export default function GroupSelectionDateConfirmationModel({ data, setData, sel
                         type='password'
                         placeholder='password'
                         value={message}
-                        // disabled={deleteInstitute.isPending}
                         className='min-w-full sm:min-w-[350px]'
                         onChange={(e) => setMessage(e.target.value)}
                     />
@@ -66,14 +42,11 @@ export default function GroupSelectionDateConfirmationModel({ data, setData, sel
                             setMessage('')
                             setData(false)
                         }}
-                        // disabled={deleteInstitute.isPending}
                         type="button"
                         className='!rounded-full w-full sm:min-w-[130px]'
                     />
                     <Button
                         label='Set'
-                        // disabled={deleteInstitute.isPending}
-                        // isLoading={deleteInstitute.isPending}
                         className='bg-primary text-white !rounded-full whitespace-nowrap w-full sm:min-w-[130px] disabled:bg-opacity-90'
                     />
                 </div>

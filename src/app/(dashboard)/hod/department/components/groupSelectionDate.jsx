@@ -20,7 +20,6 @@ export default function GroupSelectionDate({ state, setState, setGroupSelectionD
             if (groupDate.data.data.grSelectionStartDate == null || groupDate.data.data.grSelectionStartDate == null) {
                 return;
             }
-            console.log(groupDate.data.data.grSelectionStartDate);
             setGroupSelectionDate({
                 start: new Date(groupDate.data.data.grSelectionStartDate),
                 end: new Date(groupDate.data.data.grSelectionEndDate),

@@ -25,7 +25,6 @@ export default function FacultyData({ selectedItem, setSelectedItem }) {
     const [selectedFaculty, setSelectedFaculty] = useState({})
     const [editFacultyModel, setEditFacultyModel] = useState(false)
     const [coordinatorModel, setCoordinatorModel] = useState(false)
-    // const faculties = useGetFaultyWithPagination(currentPage, 15)
     const session = useSession();
     const user = session?.data?.user;
     const faculties = useGetFaulty()

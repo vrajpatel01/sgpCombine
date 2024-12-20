@@ -30,7 +30,6 @@ const handler = await NextAuth({
                         token: data.token
                     }
                 } catch (error) {
-                    // console.log(error);
                     throw new Error('Invalid credentials')
                 }
             }

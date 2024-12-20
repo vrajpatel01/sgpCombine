@@ -35,7 +35,6 @@ export const useSetGroupSelectionDate = () => {
             }
         },
         onError: (error) => {
-            console.log(error);
             if (error instanceof AxiosError) {
                 return toast.error(error.response.data?.message)
             }
@@ -56,7 +55,6 @@ export const useSetGroupLimit = () => {
             }
         },
         onError: (error) => {
-            console.log(error);
             if (error instanceof AxiosError) {
                 return toast.error(error.response.data?.message)
             }

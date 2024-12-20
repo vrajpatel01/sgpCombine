@@ -60,7 +60,6 @@ export default function SubmissionData() {
                 return toast.error(data.message);
             },
             onError: (error) => {
-                console.log('error: ', error);
                 return toast.error('Something went wrong');
             },
             onSettled: () => {
