@@ -8,8 +8,7 @@ import { SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } 
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form } from "@/components/ui/form";
 import { useRef, useState } from "react";
 import { useGetAllInstitutes, useGetDepartments } from "@/services/query";
 import { useCreateAccountByCSV } from "../../faculty/services/mutation";
@@ -20,10 +19,7 @@ import toast from "react-hot-toast";
 export default function AddStudentByExcelModel({ data, setData }) {
 
     const uploader = useRef();
-    const [hod, setHod] = useState({ institute: 'Select Institute', department: 'Select Department' })
     const [file, setFile] = useState(null)
-    const institutes = useGetAllInstitutes()
-    const departments = useGetDepartments(hod.institute, hod.institute !== '' && hod.institute !== 'Select Institute' ? true : false)
     const createAccount = useCreateAccountByCSV();
 
     const form = useForm({
@@ -94,7 +90,7 @@ export default function AddStudentByExcelModel({ data, setData }) {
                         <SheetFooter>
                             <Button
                                 type="submit"
-                                disabled={createAccount.isPending}
+                                disabled={file == null || createAccount.isPending}
                                 isLoading={createAccount.isPending}>
                                 Add accounts
                             </Button>

@@ -36,7 +36,9 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
                         placeholder='Search Group...' />
                 </div>
                 <div className="flex justify-end">
-                    <Button isLoading={assignGroup.isPending} disabled={assignGroup.isPending}>
+                    <Button
+                        isLoading={assignGroup.isPending}
+                        disabled={(groups.isSuccess && groups?.data?.data.length === 0) || assignGroup.isPending}>
                         Add
                     </Button>
                 </div>
@@ -54,6 +56,9 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
                             group={group}
                             className='w-full border-border border-1 !shadow-none select-none' />
                     ))}
+                    {groups.isSuccess && groups?.data?.data.length === 0 && (
+                        <span className="mx-auto text-muted-foreground my-auto mt-5">No group available to assign.</span>
+                    )}
                 </div>
             </form>
         </SheetContent>

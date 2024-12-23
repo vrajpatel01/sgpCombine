@@ -83,7 +83,7 @@ export default function SubmissionData() {
                 </div>
                 <div className="bg-white shadow-sm rounded-md p-4 flex justify-center items-center text-center sm:text-left flex-col sm:flex-row gap-3 mt-10">
                     <BiError className="text-3xl sm:text-2xl" />
-                    {groupId} has not submitted the report for week {week}
+                    Group has not submitted the report for week {week}
                 </div>
             </div>
         )

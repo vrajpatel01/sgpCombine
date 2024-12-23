@@ -11,6 +11,6 @@ export const useWeekInfo = () => {
 export const useGetGroupSubmissionData = ({ groupId, week }) => {
     return useQuery({
         queryFn: () => groupSubmissionData({ groupId, week }),
-        queryKey: ['weekInfo', 'week-dates', week],
+        queryKey: ['weekInfo', 'week-dates', week, groupId],
     })
 }

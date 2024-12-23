@@ -18,6 +18,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { Permissions } from "@/lib/permissions";
 import { useSession } from "next-auth/react";
 import AddFacultyModel from "./models/addFacultyModel";
+import AddFacultyByExcelModel from "./models/addFacultyByExcelModel"
 
 export default function Faculty() {
     const [addFacultyModel, setAddFacultyModel] = useState(false)
@@ -71,7 +72,7 @@ export default function Faculty() {
                 <AddFacultyModel data={addFacultyModel} setData={setAddFacultyModel} />
             </Sheet>
             <Sheet open={addFacultyByExcelModel} onOpenChange={setAddFacultyByExcelModel}>
-                <addFacultyByExcelModel data={addFacultyByExcelModel} setData={setAddFacultyByExcelModel} />
+                <AddFacultyByExcelModel data={addFacultyByExcelModel} setData={setAddFacultyByExcelModel} />
             </Sheet>
             <Dialog open={deleteFacultyModel} onOpenChange={setDeleteFacultyModel}>
                 <FacultyDeleteConfirmationModel data={deleteFacultyModel} setData={setDeleteFacultyModel} deleteMode='multiple' id={selectedItem} setSelectedItem={setSelectedItem} />

@@ -97,7 +97,7 @@ export default function LockingPage() {
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex justify-start items-center gap-4">Locking <span>{projectDetails?.data?.data?.isLocked ? <Lock size={20} /> : <LockOpen size={20} />}</span></CardTitle>
-                        <CardDescription>If you confirm, then you should lock your project submission form before end date. If you leave your locking deadline then your project is not submitted and you need meed your SGP professor for further guidance.</CardDescription>
+                        <CardDescription>If you confirm, then you should lock your project submission form before end date. If you leave your locking deadline then your project is not submitted and you need meet your SGP professor for further guidance.</CardDescription>
                     </CardHeader>
                     {projectDetails?.data?.data?.isLeader && !projectDetails?.data?.data?.isLocked && dates.start && dates.end &&
                         <Form {...form}>

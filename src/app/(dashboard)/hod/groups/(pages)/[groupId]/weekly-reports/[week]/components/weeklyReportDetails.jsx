@@ -29,7 +29,7 @@ export default function WeeklyReportDetails() {
             <div className="w-full h-full flex justify-center items-center flex-col">
                 <div className="bg-white shadow-sm rounded-md p-4 flex justify-center items-center text-center sm:text-left flex-col sm:flex-row gap-3 mt-10">
                     <BiError className="text-3xl sm:text-2xl" />
-                    {groupId.toString()} has not submitted the report for week {week.toString()}
+                    Group has not submitted the report for week {week.toString()}
                 </div>
             </div>
         )

@@ -20,8 +20,6 @@ export default function EditFacultyModel({ setData, currentUserData, setCoordina
             email: currentUserData?.email,
             phoneNumber: currentUserData?.mobileNumber,
             designation: currentUserData?.designation,
-            subjectCode: currentUserData?.subjectCode,
-            subjectName: currentUserData?.subjectName
         }
     })
 
@@ -31,8 +29,6 @@ export default function EditFacultyModel({ setData, currentUserData, setCoordina
         form.setValue('email', currentUserData?.email)
         form.setValue('phoneNumber', currentUserData?.mobileNumber)
         form.setValue('designation', currentUserData?.designation)
-        form.setValue('subjectCode', currentUserData?.subjectCode)
-        form.setValue('subjectName', currentUserData?.subjectName)
     }, [currentUserData])
 
     const onSubmit = (value) => {
@@ -43,8 +39,6 @@ export default function EditFacultyModel({ setData, currentUserData, setCoordina
                 ...(currentUserData.email !== value.email && { email: value.email }),
                 ...(currentUserData.mobileNumber !== value.phoneNumber && { mobileNumber: value.phoneNumber }),
                 ...(currentUserData.designation !== value.designation && { designation: value.designation.trim() }),
-                ...(currentUserData.subjectCode !== value.subjectCode && { subjectCode: value.subjectCode.trim() }),
-                ...(currentUserData.subjectName !== value.subjectName && { subjectName: value.subjectName.trim() })
             },
             id: currentUserData._id
         }

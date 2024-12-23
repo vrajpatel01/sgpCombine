@@ -106,7 +106,7 @@ export default function SignUpScreen() {
                         name="role"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel className="text-lg">Confirm Password</FormLabel>
+                                <FormLabel className="text-lg">Role</FormLabel>
                                 <FormControl>
                                     <Select {...field} onValueChange={(value) => field.onChange(value)}>
                                         <SelectTrigger className="w-full">

@@ -11,7 +11,6 @@ export default function FacultyInfoCard(facultyId) {
                 <div className="w-full"><Skeleton height={40} /></div>
                 <div className="w-full"><Skeleton height={40} /></div>
                 <div className="w-full"><Skeleton height={40} /></div>
-                <div className="w-full"><Skeleton height={40} /></div>
             </div>
         </div>
     }
@@ -27,14 +26,6 @@ export default function FacultyInfoCard(facultyId) {
                 <div>
                     <div className="text-body-16 text-primary-text">Designation</div>
                     <div className="text-body-16">{facultyInfo?.data?.faculty?.designation}</div>
-                </div>
-                <div>
-                    <div className="text-body-16 text-primary-text">Subject Name</div>
-                    <div className="text-body-16">{facultyInfo?.data?.faculty?.subjectName}</div>
-                </div>
-                <div>
-                    <div className="text-body-16 text-primary-text">Subject Code</div>
-                    <div className="text-body-16">{facultyInfo?.data?.faculty?.subjectCode}</div>
                 </div>
             </div>
         </div>

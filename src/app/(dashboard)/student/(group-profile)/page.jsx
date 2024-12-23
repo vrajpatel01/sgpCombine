@@ -25,7 +25,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/components/ui/use-toast";
 import { ErrorComp } from "@/components/error";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { isGroupSegment } from "next/dist/shared/lib/segment";
 
 export default function Dashboard() {
     const { toast } = useToast()
@@ -47,11 +46,10 @@ export default function Dashboard() {
         }
         if (projectDetails?.data?.success !== true) {
             return saveProjectDetails.mutate(data, {
-                onSuccess: async (data) => {
+                onSuccess: async () => {
                     toast({
                         title: 'Project created',
                         description: 'Group project details created successfully',
-                        duration: 5000,
                     })
                     await queryClient.invalidateQueries('project-details')
                     await queryClient.invalidateQueries('group-members')

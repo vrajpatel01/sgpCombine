@@ -3,9 +3,9 @@ import { Navigator } from "@/components/navigation/studentNavigator";
 import Logo from "@/components/shared/logo";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useState } from "react";
-import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
 import { ROLES } from "@/utils/role";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function MainLayout({ children }) {
     const [sidebar, setSidebar] = useState(false);

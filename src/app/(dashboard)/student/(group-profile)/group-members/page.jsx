@@ -52,7 +52,7 @@ export default function GroupMembersPage() {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Add member</DialogTitle>
-                        <DialogDescription>Type the Email ID of the person you want to add to the group.</DialogDescription>
+                        <DialogDescription>Add Other student into your group.</DialogDescription>
                     </DialogHeader>
                     <MemberAddForm />
                 </DialogContent>
