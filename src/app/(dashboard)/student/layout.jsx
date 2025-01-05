@@ -1,14 +1,14 @@
 'use client'
 import { Navigator } from "@/components/navigation/studentNavigator";
 import Logo from "@/components/shared/logo";
-import { SessionProvider, useSession } from "next-auth/react";
+import { SessionProvider, signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ROLES } from "@/utils/role";
 import { Toaster } from "@/components/ui/toaster";
 import NavigationItem from "@/components/navigation/navigationItem";
 import { IoMdContact } from "react-icons/io";
-import Button from "@/components/shared/button";
+import { Button } from "@/components/ui/button";
 
 export default function MainLayout({ children }) {
     const [sidebar, setSidebar] = useState(false);
