@@ -8,6 +8,7 @@ import { ROLES } from "@/utils/role";
 import { Toaster } from "@/components/ui/toaster";
 import NavigationItem from "@/components/navigation/navigationItem";
 import { IoMdContact } from "react-icons/io";
+import Button from "@/components/shared/button";
 
 export default function MainLayout({ children }) {
     const [sidebar, setSidebar] = useState(false);
@@ -39,7 +40,7 @@ export default function MainLayout({ children }) {
                                 title="Contact us"
                                 icon={<IoMdContact />}
                                 activeIcon={<IoMdContact />}
-                                active={pathname == '/contact-us' ? true : false} />
+                                active={pathname == '/student/contact-us' ? true : false} />
                             <Button onClick={() => signOut()} variant="destructive" className="sm:w-[230px]">
                                 Logout
                             </Button>

@@ -51,24 +51,6 @@ export default function UserInformation() {
                             disabled />}
                 </div>
                 <div>
-                    <Label htmlFor="subjectCode">subject code</Label>
-                    {me.isLoading && <Skeleton height={36} />}
-                    {me.isSuccess &&
-                        <Input
-                            id="subjectCode"
-                            value={data.subjectCode}
-                            disabled />}
-                </div>
-                <div>
-                    <Label htmlFor="subjectName">subject name</Label>
-                    {me.isLoading && <Skeleton height={36} />}
-                    {me.isSuccess &&
-                        <Input
-                            id="subjectName"
-                            value={data.subjectCode}
-                            disabled />}
-                </div>
-                <div>
                     <Label htmlFor="institute">institute</Label>
                     {me.isLoading && <Skeleton height={36} />}
                     {me.isSuccess &&
