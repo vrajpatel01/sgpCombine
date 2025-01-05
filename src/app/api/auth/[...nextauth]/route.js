@@ -23,7 +23,7 @@ const handler = await NextAuth({
                             'Content-Type': 'application/json'
                         }
                     })
-                    console.log(data);
+                    console.log(data?.role);
 
                     return {
                         email,

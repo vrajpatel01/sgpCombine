@@ -36,7 +36,7 @@ export default function MainLayout({ children }) {
                         <Navigator />
                         <div className="w-full space-y-3">
                             <NavigationItem
-                                href="/contact-us"
+                                href="/student/contact-us"
                                 title="Contact us"
                                 icon={<IoMdContact />}
                                 activeIcon={<IoMdContact />}

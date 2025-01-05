@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { SubmissionContext } from "../context/submissionContext";
 import { SubmissionSkeleton } from "../components/submissionSkeleton";
 import { useToast } from "@/hooks/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 const RichTextEditor = dynamic(() => import('../../../../../components/richTextEditor.jsx'),
     {
@@ -32,7 +33,7 @@ export default function WeekPage({ params: { week } }) {
     }
 
     return (
-        <div className='space-y-5 w-full overflow-x-hidden'>
+        <div className='space-y-5 w-full'>
             <h1 className='text-2xl capitalize flex justify-start items-center gap-3'>
                 <span>{week.replace('-', ' ')}</span>
                 {isLock ? <Lock /> : <LockOpen />}
@@ -87,19 +88,37 @@ export default function WeekPage({ params: { week } }) {
                     <div className='space-y-8'>
                         <div className='space-y-3'>
                             <span className='text-xl'>Expected Outcome as per Timeline</span>
-                            <RichTextEditor disabled={!isLeader || isLock} data={submission.expectedOutcome ?? ''} menuBar={false}
-                                onChange={(event, editor) => addData({ expectedOutcome: editor.getData() })} />
+                            {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.expectedOutcome ?? ''} menuBar={false}
+                                onChange={(event, editor) => addData({ expectedOutcome: editor.getData() })} /> */}
+                            <Textarea
+                                disabled={!isLeader || isLock}
+                                defaultValue={submission.expectedOutcome ?? ''}
+                                onChange={(e) => addData({
+                                    expectedOutcome: e.target.value
+                                })} />
                         </div>
                         <div className='space-y-3'>
                             <span className='text-xl'>Work Done</span>
-                            <RichTextEditor disabled={!isLeader || isLock} data={submission.workDone ?? ''} menuBar={false}
-                                onChange={(event, editor) => addData({ workDone: editor.getData() })} />
+                            {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.workDone ?? ''} menuBar={false}
+                                onChange={(event, editor) => addData({ workDone: editor.getData() })} /> */}
+                            <Textarea
+                                disabled={!isLeader || isLock}
+                                defaultValue={submission.workDone ?? ''}
+                                onChange={(e) => addData({
+                                    workDone: e.target.value
+                                })} />
                         </div>
                     </div>
                 </TabsContent>
                 <TabsContent value='wd'>
-                    <RichTextEditor disabled={isLock} data={submission.studentsWork ?? ''} menuBar={false}
-                        onChange={(event, editor) => addData({ studentsWork: editor.getData() })} />
+                    {/* <RichTextEditor disabled={isLock} data={submission.studentsWork ?? ''} menuBar={false}
+                        onChange={(event, editor) => addData({ studentsWork: editor.getData() })} /> */}
+                    <Textarea
+                        disabled={isLock}
+                        defaultValue={submission.studentsWork ?? ''}
+                        onChange={(e) => addData({
+                            studentsWork: e.target.value
+                        })} />
                 </TabsContent>
                 <TabsContent value="feedbacks" className="space-y-5">
                     {weekInfo?.data?.rejectMessages.map((message, index) => (
