@@ -46,7 +46,7 @@ export default function DashboardLayout({ children }) {
                             title="Contact us"
                             icon={<IoMdContact />}
                             activeIcon={<IoMdContact />}
-                            active={pathname == '/contact-us' ? true : false} />
+                            active={pathname == '/coordinator/contact-us' ? true : false} />
                         <Button onClick={() => signOut()} variant="destructive" className="sm:w-[230px]">
                             Logout
                         </Button>

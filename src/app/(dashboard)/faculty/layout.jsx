@@ -41,7 +41,7 @@ export default function DashboardLayout({ children }) {
                     <Navigator />
                     <div className="w-full space-y-3">
                         <NavigationItem
-                            href="/contact-us"
+                            href="/faculty/contact-us"
                             title="Contact us"
                             icon={<IoMdContact />}
                             activeIcon={<IoMdContact />}

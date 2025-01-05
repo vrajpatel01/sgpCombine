@@ -42,7 +42,7 @@ export default function DashboardLayout({ children }) {
                     <Navigator setToggle={setSidebar} />
                     <div className="w-full space-y-3">
                         <NavigationItem
-                            href="/contact-us"
+                            href="/hod/contact-us"
                             title="Contact us"
                             icon={<IoMdContact />}
                             activeIcon={<IoMdContact />}
