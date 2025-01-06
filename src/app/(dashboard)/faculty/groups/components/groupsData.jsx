@@ -35,10 +35,10 @@ export default function GroupsData() {
                     <div className="flex justify-center items-center h-screen w-full">
                         <div className="text-xl text-muted-foreground">No groups found.</div>
                     </div> : groups.isPending && Array(20).fill(0).map((_, i) => (
-                        <Skeleton height={150} />
+                        <Skeleton key={i} height={150} />
                     ))}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {groups.isSuccess && groups?.data?.data.map((group) => (
+                    {groups.isSuccess && groups?.data?.data.map((group, index) => (
                         <GroupInfoItem key={index} group={group} link={`/groups/${group._id}`} />
                     ))}
                 </div>
