@@ -26,13 +26,15 @@ export default function ReportRejectModel({ model, setModel }) {
             "allowPreviousEdit": false
         }
 
+
+
         changeStatus.mutate({ groupId, week, data }, {
             onSuccess: async (data) => {
                 if (data.success) {
                     setModel(false);
+                    await queryClient.invalidateQueries(['groupSubmissionData', week, groupId])
                     return toast.success('Weekly report is rejected')
                 }
-                await queryClient.invalidateQueries(['groupSubmissionData', week, groupId])
                 return toast.success(data.message);
             }
         })

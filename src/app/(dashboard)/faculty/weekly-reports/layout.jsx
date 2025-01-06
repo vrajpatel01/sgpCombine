@@ -1,5 +1,4 @@
 'use client'
-import NavigationItem from "@/components/navigation/navigationItem";
 import { usePathname } from "next/navigation";
 import { WeekList } from "./components/Weeklist";
 

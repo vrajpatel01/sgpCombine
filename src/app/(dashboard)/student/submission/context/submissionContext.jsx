@@ -109,7 +109,6 @@ export default function SubmissionContextProvider({ children }) {
     }
 
     const save = () => {
-        console.log('save');
         setLoading({
             ...loading,
             save: true

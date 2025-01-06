@@ -23,8 +23,6 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
         })
     }
 
-    console.log(groups.data);
-
     return (
         <SheetContent className="space-y-5">
             <SheetHeader>

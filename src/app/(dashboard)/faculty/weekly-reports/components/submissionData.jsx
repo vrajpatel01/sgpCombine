@@ -39,7 +39,7 @@ export default function SubmissionData() {
             </div>
         )
     }
-    const url = pathname.split('/').filter((path, index) => index !== 3).join('/')
+    const url = pathname.split('/').filter((path, index) => index !== 4).join('/')
     const statusChange = async (isLocked, allowPreviousEdit = false) => {
         const splitPath = pathname.split('/')
         const groupId = splitPath.pop();
@@ -53,8 +53,8 @@ export default function SubmissionData() {
         changeStatus.mutate({ groupId, week, data }, {
             onSuccess: async (data) => {
                 if (data.success) {
-                    await queryClient.invalidateQueries(['groupSubmissionData', week, groupId])
-                    return toast.success(data?.message ?? 'Status changed successfully')
+                    await queryClient.invalidateQueries(['groupSubmissionData', week, groupId]);
+                    return toast.success(data?.message ?? 'Status changed successfully');
                 }
                 return toast.error(data.message);
             },
@@ -69,7 +69,7 @@ export default function SubmissionData() {
             }
         })
     }
-    const currentWeek = pathname.split('/')[2];
+    const currentWeek = pathname.split('/')[3];
     if (!groupData.data || groupData.isError || groupData.data?.data === null) {
         return (
             <div className="w-full h-full flex justify-center items-center flex-col">
@@ -165,6 +165,7 @@ export default function SubmissionData() {
                     <form className="mt-5 w-full space-y-5">
                         {groupData.data?.data?.studentsWork.map((studentWork, index) => {
                             return <WorkDataViewer
+                                key={index}
                                 name={studentWork.name}
                                 email={studentWork.email}
                                 workDone={studentWork.work} />

@@ -39,15 +39,15 @@ export default function GroupsData() {
                     ))}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {groups.isSuccess && groups?.data?.data.map((group) => (
-                        <GroupInfoItem group={group} link={`/groups/${group._id}`} />
+                        <GroupInfoItem key={index} group={group} link={`/groups/${group._id}`} />
                     ))}
                 </div>
             </TabsContent>
             {Permissions.hasPermission(user.role, 'groups:view-all') &&
                 <TabsContent value="all-groups">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {allGroups.isSuccess && allGroups?.data?.data.map((group) => (
-                            <GroupInfoItem group={group} link={`/groups/${group._id}`} />
+                        {allGroups.isSuccess && allGroups?.data?.data.map((group, index) => (
+                            <GroupInfoItem key={index} group={group} link={`/groups/${group._id}`} />
                         ))}
                     </div>
                 </TabsContent>}
