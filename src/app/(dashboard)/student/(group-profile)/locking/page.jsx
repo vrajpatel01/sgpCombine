@@ -91,45 +91,9 @@ export default function LockingPage() {
 
 
     return (
-        <div className="space-y-5 overflow-hidden">
+        <div className="space-y-5 pb-5 overflow-hidden">
             <div className="space-y-5">
                 {/* {!projectDetails?.data?.data?.isLocked && dates.start && dates.end && */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="flex justify-start items-center gap-4">Locking <span>{projectDetails?.data?.data?.isLocked ? <Lock size={20} /> : <LockOpen size={20} />}</span></CardTitle>
-                        <CardDescription>If you confirm, then you should lock your project submission form before end date. If you leave your locking deadline then your project is not submitted and you need meet your SGP professor for further guidance.</CardDescription>
-                    </CardHeader>
-                    {projectDetails?.data?.data?.isLeader && !projectDetails?.data?.data?.isLocked && dates.start && dates.end &&
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)}>
-                                <CardContent className="space-y-3">
-                                    <FormField
-                                        name="verify"
-                                        control={form.control}
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormControl>
-                                                    <div className="flex items-center space-x-2">
-                                                        <Checkbox onCheckedChange={(e) => {
-                                                            form.setValue('verify', e)
-                                                        }} id="verify" />
-                                                        <FormLabel htmlFor="verify" className="text-sm font-medium leading-none" >
-                                                            I have verified that the report mentioned below is accurate.
-                                                        </FormLabel>
-                                                    </div>
-                                                </FormControl>
-                                            </FormItem>
-                                        )} />
-
-
-                                    <Button disabled={lock.isPending} className="border-t px-6 py-4">
-                                        {lock.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        <span>Lock</span>
-                                    </Button>
-                                </CardContent>
-                            </form>
-                        </Form>}
-                </Card>
                 {/* <Card>
                     <CardHeader>
                         <CardTitle>Download Certificate</CardTitle>
@@ -212,9 +176,45 @@ export default function LockingPage() {
                     </CardHeader>
                     <CardContent className="border-t px-6 py-4">
                         <div className="space-x-2 space-y-2">
-                            <DataTable columns={columns} data={groupMembersInfo?.data?.students} />
+                            <DataTable checkbox={false} columns={columns} data={groupMembersInfo?.data?.students} />
                         </div>
                     </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex justify-start items-center gap-4">Locking <span>{projectDetails?.data?.data?.isLocked ? <Lock size={20} /> : <LockOpen size={20} />}</span></CardTitle>
+                        <CardDescription>If you confirm, then you should lock your project submission form before end date. If you leave your locking deadline then your project is not submitted and you need meet your SGP professor for further guidance.</CardDescription>
+                    </CardHeader>
+                    {projectDetails?.data?.data?.isLeader && !projectDetails?.data?.data?.isLocked && dates.start && dates.end &&
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)}>
+                                <CardContent className="space-y-3">
+                                    <FormField
+                                        name="verify"
+                                        control={form.control}
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <div className="flex items-center space-x-2">
+                                                        <Checkbox onCheckedChange={(e) => {
+                                                            form.setValue('verify', e)
+                                                        }} id="verify" />
+                                                        <FormLabel htmlFor="verify" className="text-sm font-medium leading-none" >
+                                                            I have verified that the report mentioned below is accurate.
+                                                        </FormLabel>
+                                                    </div>
+                                                </FormControl>
+                                            </FormItem>
+                                        )} />
+
+
+                                    <Button disabled={lock.isPending} className="border-t px-6 py-4">
+                                        {lock.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        <span>Lock</span>
+                                    </Button>
+                                </CardContent>
+                            </form>
+                        </Form>}
                 </Card>
             </div>
         </div>

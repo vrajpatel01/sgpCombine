@@ -4,8 +4,8 @@ export const projectInfoSchema = z.object({
     title: z.string().min(1, {
         message: 'Title is required'
     }),
-    abstract: z.string().min(50, {
-        message: 'Abstract is require'
+    abstract: z.string().min(100, {
+        message: 'Abstract required minimum 100 characters'
     }),
     typeOfProject: z.string().min(1, {
         message: 'Type of Project is required'

@@ -50,8 +50,8 @@ export default function MainLayout({ children }) {
                 <div className="px-6 py-8 sm:ml-[17.4rem] pt-28 sm:mb-0 sm:py-8 w-full h-screen bg-secondary-background overflow-x-auto">
                     {children}
                 </div>
+                <Toaster />
             </div>
-            <Toaster />
         </SessionProvider>
     )
 }

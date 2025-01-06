@@ -5,12 +5,11 @@ import { TbSettingsFilled, TbSettings } from "react-icons/tb";
 import { HiMiniUserGroup, HiOutlineUserGroup } from "react-icons/hi2";
 import { IoDocumentsOutline, IoDocuments } from "react-icons/io5";
 import NavigationItem from "./navigationItem";
+import { useGetProjectDetails } from "@/app/(dashboard)/student/(group-profile)/services/query";
 
 export function Navigator() {
     const pathname = usePathname();
-    const homeIsActive = RegExp('^\/(group-members|locking)?$');
-    const submissionIsActive = RegExp('^\/submission(\/week-\d+)?$');
-    const settingsIsActive = RegExp('^\/settings$');
+    const projectInfo = useGetProjectDetails();
 
     const groupProfile = [
         '/student',
@@ -28,6 +27,7 @@ export function Navigator() {
                     active={groupProfile.includes(pathname)}
                 />
                 <NavigationItem
+                    disabled={!projectInfo?.data?.data?.isLocked}
                     href="/student/submission"
                     title="Submission"
                     icon={<IoDocumentsOutline />}

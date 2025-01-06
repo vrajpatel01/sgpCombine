@@ -39,7 +39,7 @@ export default function GroupMembersPage() {
         )
     }
     return (
-        <div className="overflow-hidden">
+        <div className="overflow-hidden pb-5">
             <Dialog>
                 <CardContent>
                     <DataTable columns={columns} data={groupMembersInfo?.data?.students} />
@@ -52,7 +52,8 @@ export default function GroupMembersPage() {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>Add member</DialogTitle>
-                        <DialogDescription>Add Other student into your group.</DialogDescription>
+                        {/* <DialogDescription>Add Other student into your group by entering his/her email <b className="whitespace-nowrap">(charusat id)</b> address.</DialogDescription> */}
+                        <DialogDescription>Enter <b>charusat email</b> id of your group member.</DialogDescription>
                     </DialogHeader>
                     <MemberAddForm />
                 </DialogContent>

@@ -14,7 +14,7 @@ export default function SubmissionContextProvider({ children }) {
     const pathname = usePathname()
     const currentWeek = parseInt(pathname.charAt(pathname.length - 1));
     const addWeeklySubmission = useSaveWeekInformation();
-    const updateWeeklySubmission = useEditWeekInformation()
+    const updateWeeklySubmission = useEditWeekInformation();
     let getWeeklySubmission = useGetWeeklySubmissionData(currentWeek);
     const queryClient = useQueryClient()
     const [submission, setSubmission] = useState({
@@ -109,6 +109,7 @@ export default function SubmissionContextProvider({ children }) {
     }
 
     const save = () => {
+        console.log('save');
         setLoading({
             ...loading,
             save: true
@@ -124,6 +125,10 @@ export default function SubmissionContextProvider({ children }) {
                     onSuccess: async (data) => {
                         if (data.success) {
                             await queryClient.invalidateQueries(['weekly-submission', currentWeek])
+                            setLoading({
+                                ...loading,
+                                save: true
+                            })
                             return toast({
                                 title: "successful",
                                 description: 'Information Updated successfully'
@@ -132,18 +137,16 @@ export default function SubmissionContextProvider({ children }) {
                     },
                     onError: (error) => {
                         if (!error.response.data.success) {
+                            setLoading({
+                                ...loading,
+                                save: true
+                            })
                             return toast({
                                 title: "Failed",
                                 description: error.response.data.message
                             })
                         }
                     },
-                    onSettled: () => {
-                        setLoading({
-                            ...loading,
-                            save: false
-                        })
-                    }
                 })
             }
             return updateWeeklySubmission.mutate({
@@ -173,11 +176,27 @@ export default function SubmissionContextProvider({ children }) {
             ...(submission.expectedOutcome && { expectedOutcome: submission.expectedOutcome }),
             ...(submission.workDone && { workDone: submission.workDone }),
             ...(submission.studentsWork && { studentsWork: submission.studentsWork }),
-            onSettled: () => {
+        }, {
+            onSettled: async (data, err, variable) => {
+                if (data.success) {
+                    toast({
+                        title: 'Success',
+                        description: data.message
+                    })
+                    await queryClient.invalidateQueries(['weekly-submission', currentWeek])
+                }
+
+                if (err !== null) {
+                    toast({
+                        title: 'Failed',
+                        description: err?.response?.data?.message || 'Something went wrong'
+                    })
+                }
+
                 setLoading({
                     ...loading,
                     save: false
-                })
+                });
             }
         })
     }

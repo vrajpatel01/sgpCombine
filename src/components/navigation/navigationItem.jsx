@@ -1,5 +1,6 @@
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function NavigationItem({ icon, activeIcon, title, href = '/', active = false, width = 230, disabled, ...rest }) {
     return (
@@ -10,7 +11,7 @@ export default function NavigationItem({ icon, activeIcon, title, href = '/', ac
                         {
                             active ?
                                 <div className="text-title-24 text-primary">{activeIcon}</div> :
-                                <div className="text-title-24">{icon}</div>
+                                <div className={cn("!text-title-24", { "text-gray-400": disabled })}>{icon}</div>
                         }
                         <div className="text-title-18 whitespace-nowrap text-gray-400">{title}</div>
                     </div>

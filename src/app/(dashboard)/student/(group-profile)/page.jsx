@@ -22,9 +22,10 @@ import { ProjectInformationSkeleton } from "@/components/group-profile/skeleton/
 import { useSetProjectDetails, useUpdateProjectDetails } from "./services/mutation";
 import { AlertCircle, CircleX, Loader2 } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useToast } from "@/components/ui/use-toast";
+
 import { ErrorComp } from "@/components/error";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useToast } from '@/hooks/use-toast';
 
 export default function Dashboard() {
     const { toast } = useToast()
@@ -64,7 +65,6 @@ export default function Dashboard() {
                     toast({
                         title: 'Updated',
                         description: 'Project details updated successfully',
-                        duration: 5000,
                     })
                     await queryClient.invalidateQueries('project-details')
                 }
@@ -136,7 +136,7 @@ export default function Dashboard() {
     const inGroup = !!projectDetails.data || !projectDetails?.error?.response?.status == 400;
 
     return (
-        <div className="grid gap-6">
+        <div className="grid gap-6 pb-5">
             {!isLocked && isValidDate &&
                 <Alert variant="warn">
                     <AlertCircle className="h-4 w-4" />

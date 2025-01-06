@@ -91,6 +91,7 @@ export default function WeekPage({ params: { week } }) {
                             {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.expectedOutcome ?? ''} menuBar={false}
                                 onChange={(event, editor) => addData({ expectedOutcome: editor.getData() })} /> */}
                             <Textarea
+                                rows={13}
                                 disabled={!isLeader || isLock}
                                 defaultValue={submission.expectedOutcome ?? ''}
                                 onChange={(e) => addData({
@@ -102,6 +103,7 @@ export default function WeekPage({ params: { week } }) {
                             {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.workDone ?? ''} menuBar={false}
                                 onChange={(event, editor) => addData({ workDone: editor.getData() })} /> */}
                             <Textarea
+                                rows={13}
                                 disabled={!isLeader || isLock}
                                 defaultValue={submission.workDone ?? ''}
                                 onChange={(e) => addData({
@@ -114,6 +116,7 @@ export default function WeekPage({ params: { week } }) {
                     {/* <RichTextEditor disabled={isLock} data={submission.studentsWork ?? ''} menuBar={false}
                         onChange={(event, editor) => addData({ studentsWork: editor.getData() })} /> */}
                     <Textarea
+                        rows={13}
                         disabled={isLock}
                         defaultValue={submission.studentsWork ?? ''}
                         onChange={(e) => addData({

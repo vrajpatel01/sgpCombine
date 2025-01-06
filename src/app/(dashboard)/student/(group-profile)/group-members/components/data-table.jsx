@@ -24,6 +24,7 @@ import { GroupInfoContext } from "../../context/useGroupInfoContext"
 export function DataTable({
     columns,
     data,
+    checkbox = true
 }) {
     const table = useReactTable({
         data,
@@ -69,8 +70,7 @@ export function DataTable({
                                 key={row?.id}
                                 data-state={row?.getIsSelected() && "selected"}>
                                 <TableCell key={0}>
-                                    {/* {flexRender(cell?.column?.columnDef?.cell, cell?.getContext())} */}
-                                    {dates.start && dates.end && !projectDetails?.data?.data?.isLocked && projectDetails?.data?.data?.isLeader &&
+                                    {dates.start && dates.end && !projectDetails?.data?.data?.isLocked && projectDetails?.data?.data?.isLeader && index !== 0 && checkbox &&
                                         <Dialog model={removeMemberModel} onOpenChange={setRemoveMemberModel}>
                                             <DialogTrigger>
                                                 <div className="p-2 rounded-full cursor-pointer hover:bg-muted-foreground/15">
