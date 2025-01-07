@@ -124,6 +124,62 @@ export default function LockingPage() {
                 </Card>
                 <Card>
                     <CardHeader>
+                        <CardTitle>Project Objective And Scope</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.ProjectObjectivesAndScope}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Background Study of Existing System</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.BackgroundStudyOfExistingSystem}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Methodology/Approach</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.Methodology_Approach}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Tentative Project Plan/Timeline</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.TentativeProjectPlan_Timeline}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Individual Role</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.IndividualRole}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Innovation/Novelty</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.Innovation_Novelty}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Expected Outcome</CardTitle>
+                    </CardHeader>
+                    <CardContent className="border-t px-6 py-4 text-justify">
+                        {projectDetails?.data?.data?.ExpectedOutcome}
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
                         <CardTitle>Type of Application</CardTitle>
                     </CardHeader>
                     <CardContent className="border-t px-6 py-4">

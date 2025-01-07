@@ -1,7 +1,7 @@
 'use client';
 import dynamic from "next/dynamic";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, Lock, LockOpen } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -9,17 +9,34 @@ import { SubmissionContext } from "../context/submissionContext";
 import { SubmissionSkeleton } from "../components/submissionSkeleton";
 import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
+import { useLeader } from "@/hooks/useLeader";
+import { getSession } from "next-auth/react";
+import { useGetGroupMembers } from "../../(group-profile)/services/query";
 
-const RichTextEditor = dynamic(() => import('../../../../../components/richTextEditor.jsx'),
-    {
-        ssr: false
-    }
-);
+// const RichTextEditor = dynamic(() => import('../../../../../components/richTextEditor.jsx'),
+//     {
+//         ssr: false
+//     }
+// );
 
 export default function WeekPage({ params: { week } }) {
     const { toast } = useToast()
-    const { submission, addData, isEmpty, save, isPending, isValueChanged, lock, isLeader, weekInfo, updateWeeklySubmission } = useContext(SubmissionContext)
+    const { submission, addData, isEmpty, save, isPending, isValueChanged, lock, weekInfo, updateWeeklySubmission } = useContext(SubmissionContext)
     const isLock = submission?.isLocked
+
+    const groupMembersInfo = useGetGroupMembers();
+    const [isLeader, setIsLeader] = useLeader(false);
+
+    const leader = groupMembersInfo?.data?.students[0];
+
+    useEffect(() => {
+        ; (async () => {
+            const session = await getSession();
+            if (!session) {
+                setIsLeader(leader == session?.user?.email)
+            }
+        })()
+    }, [])
 
     // if (updateWeeklySubmission.isError) {
     //     toast({

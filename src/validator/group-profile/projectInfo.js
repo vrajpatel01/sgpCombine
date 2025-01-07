@@ -5,7 +5,28 @@ export const projectInfoSchema = z.object({
         message: 'Title is required'
     }),
     abstract: z.string().min(100, {
-        message: 'Abstract required minimum 100 characters'
+        message: 'this field is required minimum 100 characters'
+    }),
+    projectObjectiveAndScope: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    backgroundStudyOfExistingSystem: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    methodologyAndApproach: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    tentativeProjectPlan: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    individualRole: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    innovation: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
+    }),
+    expectedOutcome: z.string().min(100, {
+        message: 'this field is required minimum 100 characters'
     }),
     typeOfProject: z.string().min(1, {
         message: 'Type of Project is required'
@@ -13,9 +34,7 @@ export const projectInfoSchema = z.object({
     typeOfApplication: z.string().min(1, {
         message: 'Type of Application is required'
     }),
-    domain: z.string().min(1, {
-        message: 'Domain is required'
-    }),
+    domain: z.string(),
     technologyAndTools: z.array(z.string()).superRefine((value, ctx) => {
         if (value.length < 1) {
             ctx.addIssue({
