@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addGroupMember, removeGroupMember, setGroupLock, setProjectDetails, updateProjectDetails, verifyGroupMember } from "./api";
+import { addGroupMember, deleteGroup, removeGroupMember, setGroupLock, setProjectDetails, updateProjectDetails, verifyGroupMember } from "./api";
 
 export const useSetProjectDetails = () => {
     return useMutation({
@@ -44,5 +44,12 @@ export const useSetGroupLock = () => {
         onSuccess: (data) => {
             queryClient.invalidateQueries('project-details');
         }
+    })
+}
+
+export const useDeleteGroup = () => {
+    const queryClient = useQueryClient()
+    return useMutation({
+        mutationFn: deleteGroup,
     })
 }

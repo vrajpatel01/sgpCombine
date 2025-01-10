@@ -110,3 +110,13 @@ export const generateCoverPage = async () => {
         }
     }))
 }
+
+export const deleteGroup = async () => {
+    const session = await getSession();
+    return (await axiosInstance.delete(`/student/group`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session?.user?.token}`
+        }
+    })).data
+}

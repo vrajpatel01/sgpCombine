@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @media (max-width: 1024px) {
   .submissionSidebar {
     position: relative;
   }
 }
-
 
 @layer base {
   :root {
@@ -37,6 +35,14 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
@@ -64,9 +70,40 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
+@layer base {
+  :root {
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
 
 @layer base {
   * {
@@ -77,7 +114,6 @@
     @apply bg-background text-foreground;
   }
 }
-
 
 @media (max-width: 600px) and (max-height: 600px) {
   .auth {
@@ -106,14 +142,13 @@
   }
 }
 
-
 .main-container {
-  font-family: 'Lato';
+  font-family: "Lato";
   width: 100%;
 }
 
 .ck-content {
-  font-family: 'Lato';
+  font-family: "Lato";
   line-height: 1.6;
   word-break: break-word;
   width: 100%;
@@ -130,7 +165,6 @@
 /*  !*margin-left: 42px;*!*/
 /*}*/
 
-
 @media (max-width: 600px) and (max-height: 600px) {
   .auth {
     display: none;
@@ -156,4 +190,8 @@
     height: 400px !important;
     /* height: 10px !important; */
   }
+}
+
+.onboarding-dialog > button {
+  display: none !important;
 }
