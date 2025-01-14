@@ -1,43 +1,33 @@
 "use client";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { DialogContent } from "./ui/dialog";
 import { useState } from "react";
 import { Link } from "lucide-react";
-import { useUpdateOnboardingStatus } from "@/app/(dashboard)/student/services/mutation";
-import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+import { DialogContent } from "@/components/ui/dialog";
+import { useOnboarding } from "../hook/useOnboarding";
 
-export default function StudentOnBoding({ setOnboarding }) {
-  const updateOnboardingStatus = useUpdateOnboardingStatus();
-  const queryClient = useQueryClient();
+export default function StudentOnBoding() {
   const [slides, setSlides] = useState(1);
+  const { updateOnboarding, onboardingStatus, isLoading } = useOnboarding();
   const maxSlides = 10;
 
-  const updateSlides = (index) => {
-    if (index === maxSlides + 1) return updateOnboarding();
+  console.log(onboardingStatus);
+
+  const updateSlides = async (index) => {
+    if (index === maxSlides + 1) {
+      if (onboardingStatus === 3) {
+        await updateOnboarding(3);
+        return setSlides(1);
+      }
+      await updateOnboarding(1);
+      return setSlides(1);
+    }
     if (index === 0) return;
     setSlides(index);
   };
 
-  const updateOnboarding = () => {
-    updateOnboardingStatus.mutate("", {
-      onSuccess: (data) => {
-        console.log(data);
-
-        if (data.success) {
-          queryClient.invalidateQueries("onboarding");
-          setSlides(1);
-          setOnboarding(false);
-        }
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    });
-  };
-
   return (
-    <DialogContent className="onboarding-dialog p-4">
+    <DialogContent hideClose className="onboarding-dialog p-4">
       <Slides
         box={
           <div className="h-[200px] w-full bg-primary flex items-center justify-center flex-col gap-1 select-none">
@@ -253,7 +243,6 @@ export default function StudentOnBoding({ setOnboarding }) {
             height="100%"
             src="https://www.youtube.com/embed/6vXTuDnJ9cw?si=oxM5eH3FwY7yhWNd"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen

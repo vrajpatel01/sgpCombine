@@ -3,7 +3,7 @@ import { updateOnboardingStatus } from "./api";
 
 export function useUpdateOnboardingStatus() {
     return useMutation({
-        mutationFn: updateOnboardingStatus,
+        mutationFn: (status) => updateOnboardingStatus(status),
         mutationKey: ['onboarding']
     })
 }

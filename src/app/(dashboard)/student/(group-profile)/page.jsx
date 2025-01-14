@@ -57,6 +57,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useOnboarding } from "../hook/useOnboarding";
 
 export default function Dashboard() {
   const { toast } = useToast();
@@ -67,6 +68,7 @@ export default function Dashboard() {
   const saveProjectDetails = useSetProjectDetails();
   const queryClient = useQueryClient();
   const deleteGroup = useDeleteGroup();
+  const { onboardingStatus, updateOnboarding } = useOnboarding();
   const [otherField, setOtherField] = useState({
     field: false,
     value: "",
@@ -129,6 +131,7 @@ export default function Dashboard() {
     deleteGroup.mutate("", {
       onSuccess: async (data) => {
         if (data.success) {
+          updateOnboarding(2);
           window.location.reload();
         }
       },
@@ -299,14 +302,33 @@ export default function Dashboard() {
                       Only the group leader should fill out this form. Other
                       group members do not need to fill it. If any other member
                       fills out the form by mistake, please delete their group
-                      data to join your leader group.
+                      data to join your leader.
                     </div>
+                    {onboardingStatus === 3 &&
+                      projectDetails.data == undefined && (
+                        <div>
+                          Or if you are not the leader of the group, please
+                          select I'm Member button.
+                        </div>
+                      )}
+                    {onboardingStatus === 3 &&
+                      projectDetails.data == undefined && (
+                        <Button
+                          type="button"
+                          className="text-center !px-5"
+                          onClick={() => updateOnboarding(2)}
+                        >
+                          I'm Member
+                        </Button>
+                      )}
                     {projectDetails.data !== undefined && !isLocked && (
                       <Button
                         type="button"
                         variant="destructive"
                         className="text-center !px-5"
-                        onClick={() => setDeleteGroupDialog(true)}
+                        onClick={() => {
+                          setDeleteGroupDialog(true);
+                        }}
                       >
                         Delete Data
                       </Button>

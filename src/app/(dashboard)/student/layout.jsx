@@ -7,22 +7,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { StudentSidebar } from "@/components/sidebar/student-sidebar";
 import { Dialog } from "@/components/ui/dialog";
-import StudentOnBoding from "@/components/student-onbording";
-import { useEffect, useState } from "react";
-import { useGetOnboardingStatus } from "./services/query";
+import StudentOnBoding from "./components/student-onboarding";
+import { useOnboarding } from "./hook/useOnboarding";
+import GetRole from "./components/getRole";
+import MemberOnboarding from "./components/member-onboarding";
 
 export default function MainLayout({ children }) {
   const session = useSession();
   const user = session?.data?.user;
   const router = useRouter();
-  const onboardingStatus = useGetOnboardingStatus();
-  const [onboarding, setOnboarding] = useState(false);
-
-  useEffect(() => {
-    if (onboardingStatus.isSuccess) {
-      setOnboarding(onboardingStatus.data.onboarding);
-    }
-  }, [onboardingStatus.isSuccess]);
+  const { onboarding, getRole, isMember } = useOnboarding();
 
   if (session?.status === "loading") return null;
   if (user?.role !== ROLES.student.name) {
@@ -32,7 +26,7 @@ export default function MainLayout({ children }) {
   return (
     <SessionProvider>
       <SidebarProvider>
-        <StudentSidebar setOnboarding={setOnboarding} />
+        <StudentSidebar />
         <main className="w-full overflow-y-scroll h-screen space-y-y sm:space-y-0">
           <div className="sm:hidden flex justify-between items-center py-3 bg-white shadow-sm px-5 fixed w-full !z-50">
             <Logo />
@@ -41,7 +35,13 @@ export default function MainLayout({ children }) {
           <div className="p-5 mt-16 bg-secondary-background h-screen overflow-y-scroll">
             {children}
             <Dialog open={onboarding}>
-              <StudentOnBoding setOnboarding={setOnboarding} />
+              <StudentOnBoding />
+            </Dialog>
+            <Dialog open={getRole}>
+              <GetRole />
+            </Dialog>
+            <Dialog open={isMember}>
+              <MemberOnboarding />
             </Dialog>
           </div>
           <Toaster />

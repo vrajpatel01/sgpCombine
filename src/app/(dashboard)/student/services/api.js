@@ -3,7 +3,7 @@ import { getSession } from "next-auth/react"
 
 export const getOnboardingStatus = async () => {
     const session = await getSession();
-    return (await axiosInstance.get('/student/onboarding',{
+    return (await axiosInstance.get('/student/onboarding', {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session?.user?.token}`,
@@ -11,9 +11,9 @@ export const getOnboardingStatus = async () => {
     })).data
 }
 
-export const updateOnboardingStatus = async () => {
+export const updateOnboardingStatus = async (status) => {
     const session = await getSession();
-    return (await axiosInstance.patch('/student/done-onboarding',{},{
+    return (await axiosInstance.patch('/student/onboarding', { onboarding: status }, {
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session?.user?.token}`,

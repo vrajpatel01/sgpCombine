@@ -15,9 +15,11 @@ import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { IoBook } from "react-icons/io5";
+import { useOnboarding } from "@/app/(dashboard)/student/hook/useOnboarding";
 
-export function StudentSidebar({ setOnboarding }) {
+export function StudentSidebar() {
   const pathname = usePathname();
+  const { updateOnboarding } = useOnboarding();
   return (
     <Sidebar className="px-2 !bg-white">
       <SidebarHeader className="!mt-2 !bg-white">
@@ -37,7 +39,7 @@ export function StudentSidebar({ setOnboarding }) {
             title="Tutorial"
             icon={<IoBook />}
             activeIcon={<IoBook />}
-            onClick={() => setOnboarding(true)}
+            onClick={() => updateOnboarding(4)}
             active={false}
           />
           <NavigationItem
