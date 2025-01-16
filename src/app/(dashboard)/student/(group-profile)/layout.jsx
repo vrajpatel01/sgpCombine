@@ -1,3 +1,4 @@
+"use client";
 import { GroupProfileNavigator } from "@/components/group-profile/navigator";
 import GroupInfoContextProvider from "./context/useGroupInfoContext";
 
