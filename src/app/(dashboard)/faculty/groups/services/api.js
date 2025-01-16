@@ -31,3 +31,15 @@ export const getAllGroupsCoordinator = async () => {
         }
     })).data
 }
+
+export const updateGroupLockStatus = async (groupId, status) => {
+    const session = await getSession();
+    return (await axiosInstance.patch(`/faculty/change-group-lock/${groupId}`, {
+        isLocked: status
+    }, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session?.user?.token}`
+        }
+    })).data
+}
