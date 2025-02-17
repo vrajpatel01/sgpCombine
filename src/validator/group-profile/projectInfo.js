@@ -19,14 +19,14 @@ export const projectInfoSchema = z.object({
     tentativeProjectPlan: z.string().min(100, {
         message: 'this field is required minimum 100 characters'
     }),
-    individualRole: z.string().min(100, {
-        message: 'this field is required minimum 100 characters'
+    individualRole: z.string().min(10, {
+        message: 'this field is required minimum 10 characters'
     }),
-    innovation: z.string().min(100, {
-        message: 'this field is required minimum 100 characters'
+    innovation: z.string().min(50, {
+        message: 'this field is required minimum 50 characters'
     }),
-    expectedOutcome: z.string().min(100, {
-        message: 'this field is required minimum 100 characters'
+    expectedOutcome: z.string().min(50, {
+        message: 'this field is required minimum 50 characters'
     }),
     typeOfProject: z.string().min(1, {
         message: 'Type of Project is required'

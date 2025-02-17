@@ -321,18 +321,20 @@ export default function Dashboard() {
                           I'm Member
                         </Button>
                       )}
-                    {projectDetails.data !== undefined && !isLocked && (
-                      <Button
-                        type="button"
-                        variant="destructive"
-                        className="text-center !px-5"
-                        onClick={() => {
-                          setDeleteGroupDialog(true);
-                        }}
-                      >
-                        Delete Data
-                      </Button>
-                    )}
+                    {projectDetails.data !== undefined &&
+                      !isLocked &&
+                      isLeader && (
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          className="text-center !px-5"
+                          onClick={() => {
+                            setDeleteGroupDialog(true);
+                          }}
+                        >
+                          Delete Data
+                        </Button>
+                      )}
                   </AlertDescription>
                 </Alert>
               </CardHeader>
@@ -363,6 +365,9 @@ export default function Dashboard() {
                               : false
                           }
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Title"
                         />
                       </FormControl>
@@ -406,6 +411,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Abstract"
                         />
                       </FormControl>
@@ -451,6 +459,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Project Objectives and Scope"
                         />
                       </FormControl>
@@ -492,6 +503,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Background Study of Existing System"
                         />
                       </FormControl>
@@ -534,6 +548,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Methodology/Approach"
                         />
                       </FormControl>
@@ -572,6 +589,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Tentative Project Plan/Timeline"
                         />
                       </FormControl>
@@ -609,6 +629,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Individual Role"
                         />
                       </FormControl>
@@ -649,6 +672,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Innovation/Novelty"
                         />
                       </FormControl>
@@ -686,6 +712,9 @@ export default function Dashboard() {
                           }
                           rows={10}
                           {...field}
+                          onChange={(e) =>
+                            field.onChange(e.target.value.trimStart())
+                          }
                           placeholder="Expected Outcome"
                         />
                       </FormControl>
