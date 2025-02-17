@@ -48,3 +48,22 @@ export const resetPasswordValidator = z.object({
         })
     }
 })
+
+export const changePasswordValidator = z.object({
+    currentPassword: z.string().min(1, {
+        message: 'Current password is required'
+    }),
+    newPassword: z.string().min(8, {
+        message: 'Password is required'
+    }).refine(data => passwordRegex.test(data), {
+        message: 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character and must be at least 8 characters long'
+    }),
+    confirmPassword: z.string(),
+}).superRefine((data, ctx) => {
+    if (data.newPassword !== data.confirmPassword) {
+        return ctx.addIssue({
+            path: ['confirmPassword'],
+            message: 'password and confirm password must be same'
+        })
+    }
+})

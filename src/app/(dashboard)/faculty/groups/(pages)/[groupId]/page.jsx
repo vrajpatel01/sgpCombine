@@ -132,9 +132,12 @@ export default function AssignFacultyToGroup({ params, searchParams }) {
         </div>
       )}
       {group.isSuccess && (
-        <div className="flex justify-start items-start flex-col-reverse lg:flex-row gap-5 mt-5">
+        <div className="grid grid-cols-4 flex-col-reverse lg:flex-row gap-5 mt-5">
           <GroupMemberInfo group={group?.data?.group} />
-          <ProjectInformation projectInfo={group?.data?.group?.projectInfo} />
+          <ProjectInformation
+            className="col-span-3 overflow-hidden"
+            projectInfo={group?.data?.group?.projectInfo}
+          />
         </div>
       )}
     </div>

@@ -68,7 +68,6 @@ export default function AssignFacultyToGroup({ params, searchParams }) {
                 className="text-2xl cursor-pointer"
               />
               <h1 className="text-title-28 mb-2 capitalize">
-                {/* {group?.data?.group?.projectInfo?.title} */}
                 {group?.data?.group?.groupId}
               </h1>
               <div className="bg-muted-foreground p-2 rounded-md text-white text-xl">
@@ -78,28 +77,6 @@ export default function AssignFacultyToGroup({ params, searchParams }) {
                   <IoLockOpen />
                 )}
               </div>
-            </div>
-            <div>
-              {!group?.data?.group?.isLocked ? (
-                <Button
-                  variant="destructive"
-                  disabled={updateLockStatus.isPending}
-                  onClick={() => updateLock(true)}
-                >
-                  <IoLockClosed />
-                  {updateLockStatus.isPending && <Loader2 size={18} />}
-                  <span>Lock</span>
-                </Button>
-              ) : (
-                <Button
-                  disabled={updateLockStatus.isPending}
-                  onClick={() => updateLock(false)}
-                >
-                  <IoLockOpen />
-                  {updateLockStatus.isPending && <Loader2 size={18} />}
-                  <span>Unlock</span>
-                </Button>
-              )}
             </div>
           </div>
         )}
@@ -135,7 +112,10 @@ export default function AssignFacultyToGroup({ params, searchParams }) {
       {group.isSuccess && (
         <div className="flex justify-start items-start flex-col-reverse lg:flex-row gap-5 mt-5">
           <GroupMemberInfo group={group?.data?.group} />
-          <ProjectInformation projectInfo={group?.data?.group?.projectInfo} />
+          <ProjectInformation
+            className="col-span-3 overflow-hidden"
+            projectInfo={group?.data?.group?.projectInfo}
+          />
         </div>
       )}
     </div>
