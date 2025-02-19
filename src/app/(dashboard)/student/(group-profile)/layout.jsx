@@ -6,17 +6,15 @@ export default function GroupProfileLayout({ children }) {
   return (
     <>
       <GroupInfoContextProvider>
-        <div className="submissionSidebar flex justify-start items-start flex-col lg:flex-row lg:w-auto h-auto lg:h-full gap-5">
+        <div className="submissionSidebar flex justify-start items-start flex-col lg:flex-row lg:w-auto lg:h-full gap-5 h-auto">
           <div className="absolute left-0 right-0 lg:left-auto lg:right-auto lg:bottom-0 lg:top-0 lg:py-5 z-20 min-w-[280px]">
             <GroupProfileNavigator />
           </div>
-          {/* <div className="w-full lg:ml-[18.4rem] mt-20 lg:mt-0">{children}</div> */}
-          <div className="md:absolute right-5 top-0 md:left-[35.5rem] bottom-0 mt-20 lg:mt-0 pt-5">
-            <div className="overflow-y-scroll h-full">{children}</div>
+          <div className="mt-14 lg:mt-0 lg:absolute right-0 top-0 left-0 lg:left-[36rem] bottom-0 no-scrollbar w-full lg:w-auto">
+            <div className="overflow-y-scroll h-full pt-5 lg:pr-5 w-full lg:w-auto">
+              {children}
+            </div>
           </div>
-          {/* <div className="w-[78.5%] lg:ml-[18.4rem] mt-20 lg:mt-0">
-            {children}
-          </div> */}
         </div>
       </GroupInfoContextProvider>
     </>

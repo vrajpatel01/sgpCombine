@@ -11,8 +11,6 @@ export default function StudentOnBoding() {
   const { updateOnboarding, onboardingStatus, isLoading } = useOnboarding();
   const maxSlides = 10;
 
-  console.log(onboardingStatus);
-
   const updateSlides = async (index) => {
     if (index === maxSlides + 1) {
       if (onboardingStatus === 3) {

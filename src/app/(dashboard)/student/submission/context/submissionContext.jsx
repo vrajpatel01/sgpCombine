@@ -14,7 +14,7 @@ export const SubmissionContext = createContext();
 export default function SubmissionContextProvider({ children }) {
   const { toast } = useToast();
   const pathname = usePathname();
-  const currentWeek = parseInt(pathname.charAt(pathname.length - 1));
+  const currentWeek = parseInt(pathname.charAt(pathname?.length - 1));
   const addWeeklySubmission = useSaveWeekInformation();
   const updateWeeklySubmission = useEditWeekInformation();
   let getWeeklySubmission = useGetWeeklySubmissionData(currentWeek);
@@ -53,7 +53,11 @@ export default function SubmissionContextProvider({ children }) {
         isLocked: false,
       });
     }
-  }, [getWeeklySubmission.data, getWeeklySubmission.isError]);
+  }, [
+    getWeeklySubmission.data,
+    getWeeklySubmission.isError,
+    getWeeklySubmission.isLoading,
+  ]);
 
   const addData = (data) => {
     setSubmission({
@@ -79,7 +83,7 @@ export default function SubmissionContextProvider({ children }) {
       return (
         submission.expectedOutcome === "" ||
         submission.workDone === "" ||
-        submission.studentsWork.length === 0
+        submission.studentsWork?.length === 0
       );
     }
     return submission.studentsWork === "";

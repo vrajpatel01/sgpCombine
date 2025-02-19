@@ -30,7 +30,6 @@ export default function PasswordChange() {
   });
 
   const onSubmit = (value) => {
-    console.log(value);
     changePassword.mutate(
       {
         currentPassword: value.currentPassword,

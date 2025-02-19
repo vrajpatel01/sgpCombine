@@ -30,11 +30,9 @@ export default function GetRole() {
 
   const onSubmit = (value) => {
     if (value.input === "I'm Leader") {
-      console.log("I am leader");
       updateOnboarding(3);
       return;
     } else if (value.input === "I'm Member") {
-      console.log("I am member");
       updateOnboarding(2);
       return;
     }

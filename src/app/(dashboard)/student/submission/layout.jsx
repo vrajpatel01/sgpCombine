@@ -47,10 +47,11 @@ export default function SubmissionLayout({ children }) {
         />
       ) : (
         <>
-          <div className="absolute left-0 right-0 lg:left-auto lg:right-auto lg:bottom-0 lg:top-0 lg:py-5 z-20 min-w-[280px] px-5">
+          {/* <div className="absolute left-0 right-0 lg:left-auto lg:right-auto lg:bottom-0 lg:top-0 lg:py-5 z-20 min-w-[280px] px-5"> */}
+          <div className="lg:absolute top-5 bottom-5">
             <WeekNavigator totalWeeks={weekInfo} />
           </div>
-          <div className="lg:ml-[18.4rem] mt-24 lg:mt-0">
+          <div className="lg:ml-[17.4rem] lg:mt-0">
             {weekInfo.isPending || projectDetails.isPending ? (
               <SubmissionSkeleton />
             ) : (

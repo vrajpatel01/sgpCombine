@@ -1,7 +1,6 @@
 "use client";
-import dynamic from "next/dynamic";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, Lock, LockOpen } from "lucide-react";
 import {
@@ -12,20 +11,11 @@ import {
 } from "@/components/ui/tooltip";
 import { SubmissionContext } from "../context/submissionContext";
 import { SubmissionSkeleton } from "../components/submissionSkeleton";
-import { useToast } from "@/hooks/use-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { useLeader } from "@/hooks/useLeader";
 import { getSession } from "next-auth/react";
 import { useGetGroupMembers } from "../../(group-profile)/services/query";
 
-// const RichTextEditor = dynamic(() => import('../../../../../components/richTextEditor.jsx'),
-//     {
-//         ssr: false
-//     }
-// );
-
 export default function WeekPage({ params: { week } }) {
-  const { toast } = useToast();
   const {
     submission,
     addData,
@@ -35,32 +25,31 @@ export default function WeekPage({ params: { week } }) {
     isValueChanged,
     lock,
     weekInfo,
-    updateWeeklySubmission,
   } = useContext(SubmissionContext);
   const isLock = submission?.isLocked;
-
   const groupMembersInfo = useGetGroupMembers();
-  const [isLeader, setIsLeader] = useLeader(false);
+  const [isLeader, setIsLeader] = useState(false);
+  const [content, setContent] = useState({
+    expectedOutcome: "",
+    workDone: "",
+    studentsWork: "",
+    isLocked: false,
+  });
 
-  const leader = groupMembersInfo?.data?.students[0];
+  useEffect(() => {
+    setContent(submission);
+  }, [submission]);
 
   useEffect(() => {
     (async () => {
       const session = await getSession();
-      if (!session) {
-        setIsLeader(leader == session?.user?.email);
-      }
+      const localUser = session?.user?.email;
+      const leader = groupMembersInfo?.data?.students[0];
+      setIsLeader(leader?.email == localUser);
     })();
-  }, []);
+  }, [groupMembersInfo.isLoading]);
 
-  // if (updateWeeklySubmission.isError) {
-  //     toast({
-  //         title: "Scheduled: Catch up",
-  //         description: "Friday, February 10, 2023 at 5:57 PM",
-  //     })
-  // }
-
-  if (isPending.get) {
+  if (isPending?.get) {
     return <SubmissionSkeleton />;
   }
 
@@ -92,8 +81,8 @@ export default function WeekPage({ params: { week } }) {
 
           <TabsTrigger
             disabled={
-              weekInfo?.data?.rejectMessages.length === 0 ||
-              submission.expectedOutcome.length === 0
+              weekInfo?.data?.rejectMessages?.length === 0 ||
+              content?.expectedOutcome == ""
             }
             className="p-[10px] !bg-transparent !shadow-none data-[state=active]:border-b border-black rounded-none"
             value="feedbacks"
@@ -105,12 +94,10 @@ export default function WeekPage({ params: { week } }) {
           <div className="space-y-8">
             <div className="space-y-3">
               <span className="text-xl">Expected Outcome as per Timeline</span>
-              {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.expectedOutcome ?? ''} menuBar={false}
-                                onChange={(event, editor) => addData({ expectedOutcome: editor.getData() })} /> */}
               <Textarea
                 rows={13}
                 disabled={!isLeader || isLock}
-                defaultValue={submission.expectedOutcome ?? ""}
+                defaultValue={content.expectedOutcome}
                 onChange={(e) =>
                   addData({
                     expectedOutcome: e.target.value,
@@ -120,12 +107,10 @@ export default function WeekPage({ params: { week } }) {
             </div>
             <div className="space-y-3">
               <span className="text-xl">Work Done</span>
-              {/* <RichTextEditor disabled={!isLeader || isLock} data={submission.workDone ?? ''} menuBar={false}
-                                onChange={(event, editor) => addData({ workDone: editor.getData() })} /> */}
               <Textarea
                 rows={13}
                 disabled={!isLeader || isLock}
-                defaultValue={submission.workDone ?? ""}
+                defaultValue={content.workDone}
                 onChange={(e) =>
                   addData({
                     workDone: e.target.value,
@@ -136,12 +121,10 @@ export default function WeekPage({ params: { week } }) {
           </div>
         </TabsContent>
         <TabsContent value="wd">
-          {/* <RichTextEditor disabled={isLock} data={submission.studentsWork ?? ''} menuBar={false}
-                        onChange={(event, editor) => addData({ studentsWork: editor.getData() })} /> */}
           <Textarea
             rows={13}
             disabled={isLock}
-            defaultValue={submission.studentsWork ?? ""}
+            defaultValue={content.studentsWork ?? ""}
             onChange={(e) =>
               addData({
                 studentsWork: e.target.value,
@@ -188,10 +171,10 @@ export default function WeekPage({ params: { week } }) {
                 <TooltipTrigger asChild>
                   <Button
                     onClick={lock}
-                    disabled={isEmpty() || isPending.save}
+                    disabled={isEmpty() || isPending?.save}
                     className="px-10 space-x-3"
                   >
-                    {isPending.lock && (
+                    {isPending?.lock && (
                       <Loader2 size={15} className="animate-spin" />
                     )}
                     <span>Lock</span>

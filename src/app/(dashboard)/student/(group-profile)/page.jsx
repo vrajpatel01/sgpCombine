@@ -235,7 +235,7 @@ export default function Dashboard() {
 
   if (isLoading.dates || isLoading.projectDetails) {
     return (
-      <Card>
+      <Card className="!w-full">
         <CardHeader>
           <CardTitle>Project Information</CardTitle>
           <CardDescription>
@@ -948,7 +948,6 @@ export default function Dashboard() {
                       disabled={projectDetails.data !== undefined}
                       checked={leaderConfirmation}
                       onCheckedChange={(e) => {
-                        console.log(e);
                         setLeaderConfirmation(e);
                       }}
                       id="leader"

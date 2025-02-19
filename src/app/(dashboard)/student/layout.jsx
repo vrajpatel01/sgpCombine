@@ -24,12 +24,12 @@ export default function MainLayout({ children }) {
       <SessionProvider>
         <SidebarProvider>
           <StudentSidebar />
-          <main className="w-full overflow-y-scroll h-screen space-y-y sm:space-y-0">
+          <main className="w-full overflow-y-scroll h-screen space-y-y sm:space-y-0 no-scrollbar bg-secondary-background">
             <div className="sm:hidden flex justify-between items-center py-3 bg-white shadow-sm px-5 fixed w-full !z-50">
               <Logo />
               <SidebarTrigger />
             </div>
-            <div className="p-5 mt-16 bg-secondary-background h-screen overflow-y-scroll">
+            <div className="p-5 mt-16 no-scrollbar">
               {children}
               <OnboardingDialog />
             </div>
