@@ -4,6 +4,6 @@ import { search } from "./api"
 export const useSearchUser = (data) => {
     return useQuery({
         queryFn: () => search(data),
-        queryKey: ['search', data.name, data.email, data.role],
+        queryKey: ['search', data.search, data.searchBy, data.role],
     })
 }

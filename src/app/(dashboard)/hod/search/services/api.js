@@ -1,19 +1,18 @@
 import axiosInstance from "@/axios.config"
 import { getSession } from "next-auth/react"
 
-export const search = async ({ role, name, email }) => {
+export const search = async ({ search, searchBy, role }) => {
     const session = await getSession();
     let url = `/hod/search-users?role=${role}`
-    if (name) {
-        url = `/hod/search-users?role=${role}&name=${name}`
+    console.log(searchBy)
+    if (searchBy === "id") {
+        url = `/hod/search-users?role=${role}&id=${search}`
     }
-
-    if (email) {
-        url = `/hod/search-users?role=${role}&email=${email}`
+    if (searchBy === "email") {
+        url = `/hod/search-users?role=${role}&email=${search}`
     }
-
-    if (name && email) {
-        url = `/hod/search-users?role=${role}&name=${name}&email=${email}`
+    if (searchBy === "name") {
+        url = `/hod/search-users?role=${role}&name=${search}`
     }
     return (await axiosInstance.get(url, {
         headers: {
