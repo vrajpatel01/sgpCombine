@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import GroupInfoItem from "../components/groupInfoItem";
 import { useGetPendingGroups } from "../../../services/query";
@@ -19,6 +19,7 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
   const assignGroup = useAssignGroup();
   const [searchText, setSearchText] = useState("");
   const [selectedGroups, setSelectedGroups] = useState([]);
+  const [filteredGroup, setFilteredGroup] = useState([]);
 
   const handleAssignGroup = (e) => {
     e.preventDefault();
@@ -28,8 +29,32 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
     });
   };
 
+  useEffect(() => {
+    if (groups.isSuccess && groups?.data && groups?.data?.success) {
+      setFilteredGroup(groups?.data?.data);
+    }
+  }, [
+    groups.isSuccess,
+    groups?.data,
+    groups?.data?.success,
+    groups?.data?.data,
+  ]);
+
+  useEffect(() => {
+    if (groups.isSuccess && groups?.data && groups?.data?.success) {
+      setFilteredGroup(
+        groups?.data?.data.filter((group) => {
+          console.log(group?.groupId.toLowerCase());
+          return group?.groupId
+            .toLowerCase()
+            .includes(searchText.toLowerCase());
+        })
+      );
+    }
+  }, [searchText]);
+
   return (
-    <SheetContent className="space-y-5">
+    <SheetContent className="space-y-5 overflow-y-scroll h-full">
       <SheetHeader>
         <SheetTitle>Assign Faculty</SheetTitle>
         <SheetDescription>
@@ -37,7 +62,11 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
         </SheetDescription>
       </SheetHeader>
       <Separator />
-      <form onSubmit={handleAssignGroup} className="space-y-4" noValidate>
+      <form
+        onSubmit={handleAssignGroup}
+        className="space-y-4 h-full"
+        noValidate
+      >
         <div className="flex justify-center items-center gap-3">
           <Input
             value={searchText}
@@ -59,26 +88,23 @@ export default function assignGroupsModel({ facultyId, data, setData }) {
             Add
           </Button>
         </div>
-        <div className="flex flex-col gap-3 mt-5">
-          {groups.isSuccess &&
-            groups?.data &&
-            groups?.data?.success &&
-            groups?.data?.data.map((group) => (
-              <GroupInfoItem
-                checkBox
-                onClick={(e, select) => {
-                  if (!select) {
-                    setSelectedGroups([...selectedGroups, group._id]);
-                  } else {
-                    setSelectedGroups(
-                      selectedGroups.filter((item) => item !== group._id)
-                    );
-                  }
-                }}
-                group={group}
-                className="w-full border-border border-1 !shadow-none select-none"
-              />
-            ))}
+        <div className="flex flex-col gap-3 mt-5 h-full">
+          {filteredGroup.map((group) => (
+            <GroupInfoItem
+              checkBox
+              onClick={(e, select) => {
+                if (!select) {
+                  setSelectedGroups([...selectedGroups, group._id]);
+                } else {
+                  setSelectedGroups(
+                    selectedGroups.filter((item) => item !== group._id)
+                  );
+                }
+              }}
+              group={group}
+              className="w-full border-border border-1 !shadow-none select-none"
+            />
+          ))}
           {groups.isSuccess &&
             groups?.data &&
             groups?.data?.success &&
