@@ -4,7 +4,6 @@ import { getSession } from "next-auth/react"
 export const search = async ({ search, searchBy, role }) => {
     const session = await getSession();
     let url = `/hod/search-users?role=${role}`
-    console.log(searchBy)
     if (searchBy === "id") {
         url = `/hod/search-users?role=${role}&id=${search}`
     }

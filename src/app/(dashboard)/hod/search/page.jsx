@@ -20,7 +20,6 @@ export default function SearchPage() {
   const SRole = searchParams.get("role");
   const SSearchBy = searchParams.get("by");
   const SSearch = searchParams.get("search");
-  console.log(SRole, SSearchBy, SSearch);
   const [role, setRole] = useState(SRole || "hod");
   const [searchBy, setSearchBy] = useState(SSearchBy || "id");
   const [search, setSearch] = useState(SSearch || "");
