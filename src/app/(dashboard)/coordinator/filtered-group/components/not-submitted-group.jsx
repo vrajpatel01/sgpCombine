@@ -3,10 +3,13 @@ import TableRow from "@/components/shared/table/tableRow";
 import TableCell from "@/components/shared/table/tableCell";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGetSubmissionStatusOfAllGroup } from "../../groups/services/query";
+import { Dialog } from "@/components/ui/dialog";
+import { EmailStatusModel } from "../model/emailStatusMode";
 
 export function NotSubmittedGroupComp() {
+  const [reminderModel, setReminderModel] = useState(false);
   const tableRef = useRef();
   const studentWithoutGroup = useGetSubmissionStatusOfAllGroup();
 
@@ -67,7 +70,8 @@ export function NotSubmittedGroupComp() {
 
   return (
     <>
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center gap-3">
+        <Button onClick={() => setReminderModel(true)}>Send Reminder</Button>
         <Button onClick={handleButtonClick}>Print</Button>
       </div>
       <div className="table-container mb-6 overflow-x-auto no-scroll  bg-white rounded-md w-full my-5 border-border border-[.5px]">
@@ -109,6 +113,9 @@ export function NotSubmittedGroupComp() {
           </tbody>
         </table>
       </div>
+      <Dialog onOpenChange={setReminderModel} open={reminderModel}>
+        <EmailStatusModel model={reminderModel} setModel={setReminderModel} />
+      </Dialog>
     </>
   );
 }

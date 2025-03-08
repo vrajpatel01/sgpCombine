@@ -5,7 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
 } from "@/components/ui/dialog";
-import { useSendRemindersToStudentsWhoNotJoinedAnyGroup } from "../services/mutation";
+import { useSendReminderToGroupsWhoNotSubmittedWeeklyReport } from "../services/mutation";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import TableRow from "@/components/shared/table/tableRow";
@@ -14,7 +14,7 @@ import Skeleton from "react-loading-skeleton";
 
 export const EmailStatusModel = ({ setModel }) => {
   const [stage, setStage] = useState(1);
-  const sendReminder = useSendRemindersToStudentsWhoNotJoinedAnyGroup();
+  const sendReminder = useSendReminderToGroupsWhoNotSubmittedWeeklyReport();
 
   const onReminderSend = () => {
     sendReminder.mutate(() => {}, {
@@ -45,8 +45,9 @@ export const EmailStatusModel = ({ setModel }) => {
       {stage == 1 && (
         <>
           <DialogDescription>
-            You are about to send a reminder to all students who have not joined
-            any group. Are you sure you want to proceed?
+            You are about to send a reminder to all groups who have not
+            submitted current week weekly report yet. Are you sure you want to
+            proceed?
           </DialogDescription>
           <DialogFooter>
             <Button onClick={onReminderSend} disabled={sendReminder.isPending}>
@@ -82,8 +83,9 @@ export const EmailStatusModel = ({ setModel }) => {
               <thead className="border-b-1 border-border">
                 <TableRow header>
                   {/* {students.isSuccess && <TableCell content="" />} */}
-                  <TableCell content="Name" />
-                  <TableCell content="Email" />
+                  <TableCell content="Group Id" />
+                  <TableCell content="Leader Name" />
+                  <TableCell content="Leader Email" />
                 </TableRow>
               </thead>
               <tbody className="divide-y">
@@ -98,13 +100,17 @@ export const EmailStatusModel = ({ setModel }) => {
                         <TableCell
                           content={<Skeleton height={30} width={300} />}
                         />
+                        <TableCell
+                          content={<Skeleton height={30} width={300} />}
+                        />
                       </TableRow>
                     ))}
                 {sendReminder.isSuccess &&
-                  sendReminder?.data?.students?.map((student, index) => (
+                  sendReminder?.data?.groups?.map((student, index) => (
                     <TableRow id={student._id} key={index}>
-                      <TableCell content={student.name} />
-                      <TableCell content={student.email} />
+                      <TableCell content={student.groupId} />
+                      <TableCell content={student.students[0].name} />
+                      <TableCell content={student.students[0].email} />
                     </TableRow>
                   ))}
               </tbody>
