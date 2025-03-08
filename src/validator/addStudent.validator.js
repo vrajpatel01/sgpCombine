@@ -14,9 +14,6 @@ export default z.object({
     phoneNumber: z.string().refine(data => regex.phone.test(data), {
         message: 'Enter valid phone number'
     }),
-    semester: z.string().min(1, {
-        message: 'semester is required'
-    }),
     batch: z.string().min(1, {
         message: 'batch should have more than 1 characters'
     }),

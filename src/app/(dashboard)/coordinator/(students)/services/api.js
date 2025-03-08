@@ -86,3 +86,13 @@ export const getMyStudents = async () => {
         }
     })).data
 }
+
+export const getStudentWithoutGroup = async () => {
+    const session = await getSession();
+    return (await axiosInstance.get("/coordinator/students-without-group", {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session?.user?.token}`
+        }
+    })).data
+}

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMyStudents, getOneStudent, getStudents, getStudentsWithPagination } from "./api";
+import { getMyStudents, getOneStudent, getStudents, getStudentsWithPagination, getStudentWithoutGroup } from "./api";
 
 export const useGetStudents = () => {
     return useQuery({
@@ -29,5 +29,12 @@ export const useGetMyStudents = () => {
     return useQuery({
         queryFn: getMyStudents,
         queryKey: ["my-students"],
+    })
+}
+
+export const useGetStudentsWithoutGroup = () => {
+    return useQuery({
+        queryFn: getStudentWithoutGroup,
+        queryKey: ["students-without-group"],
     })
 }
