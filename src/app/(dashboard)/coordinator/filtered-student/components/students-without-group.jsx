@@ -4,11 +4,14 @@ import TableCell from "@/components/shared/table/tableCell";
 import { useGetStudentsWithoutGroup } from "../../(students)/services/query";
 import Skeleton from "react-loading-skeleton";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { EmailStatusModel } from "../model/emailStatusMode";
+import { Dialog } from "@/components/ui/dialog";
 
 export function StudentWithoutGroupComp() {
   const tableRef = useRef();
   const studentWithoutGroup = useGetStudentsWithoutGroup();
+  const [emailSendDialog, setEmailSendDialog] = useState(false);
 
   const tableStyle = `
       <style>
@@ -67,7 +70,8 @@ export function StudentWithoutGroupComp() {
 
   return (
     <>
-      <div className="flex justify-end items-center">
+      <div className="flex justify-end items-center gap-3">
+        <Button onClick={() => setEmailSendDialog(true)}>Send Reminder</Button>
         <Button onClick={handleButtonClick}>Print</Button>
       </div>
       <div className="table-container mb-6 overflow-x-auto no-scroll  bg-white rounded-md w-full my-5 border-border border-[.5px]">
@@ -111,6 +115,12 @@ export function StudentWithoutGroupComp() {
           </tbody>
         </table>
       </div>
+      <Dialog open={emailSendDialog} onOpenChange={setEmailSendDialog}>
+        <EmailStatusModel
+          model={emailSendDialog}
+          setModel={setEmailSendDialog}
+        />
+      </Dialog>
     </>
   );
 }
