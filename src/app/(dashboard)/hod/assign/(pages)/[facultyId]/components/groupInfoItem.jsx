@@ -81,6 +81,19 @@ export default function GroupInfoItem({
               {group?.title}
             </div>
           </div>
+          <div
+            className={cn("flex justify-start items-center gap-3 w-full", {
+              "w-1/2": deassignBtn,
+            })}
+          >
+            <div className="text-body-16 text-light-text">Technology</div>
+            <div
+              title={group?.technologies?.join(", ")}
+              className="text-body-16 capitalize whitespace-nowrap truncate"
+            >
+              {group?.technologies?.join(", ")}
+            </div>
+          </div>
           <div className="flex justify-between items-center w-full gap-3">
             <div
               className={cn("flex justify-start items-center gap-3 w-full", {

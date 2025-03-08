@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useDeassignGroup } from "../../../services/mutation";
+import { cn } from "@/lib/utils";
 
 export default function GroupInfoItem({
   group,
@@ -80,8 +81,25 @@ export default function GroupInfoItem({
               {group?.title}
             </div>
           </div>
+          <div
+            className={cn("flex justify-start items-center gap-3 w-full", {
+              "w-1/2": deassignBtn,
+            })}
+          >
+            <div className="text-body-16 text-light-text">Technology</div>
+            <div
+              title={group?.technologies?.join(", ")}
+              className="text-body-16 capitalize whitespace-nowrap truncate"
+            >
+              {group?.technologies?.join(", ")}
+            </div>
+          </div>
           <div className="flex justify-between items-center w-full gap-3">
-            <div className="flex justify-center items-center gap-3 w-1/2">
+            <div
+              className={cn("flex justify-start items-center gap-3 w-full", {
+                "w-1/2": deassignBtn,
+              })}
+            >
               <div className="text-body-16 text-light-text">Leader</div>
               <div
                 title="leader name"
