@@ -43,3 +43,13 @@ export const updateGroupLockStatus = async (groupId, status) => {
         }
     })).data
 }
+
+export const getSubmissionStatusOfAllGroup = async () => {
+    const session = await getSession();
+    return (await axiosInstance.get("/coordinator/group-submission-status", {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${session?.user?.token}`
+        }
+    })).data
+}

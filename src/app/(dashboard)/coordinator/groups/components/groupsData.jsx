@@ -1,6 +1,10 @@
 // components
 import Skeleton from "react-loading-skeleton";
-import { useGetAllGroups, useGetAllGroupsCoordinator } from "../services/query";
+import {
+  useGetAllGroups,
+  useGetAllGroupsCoordinator,
+  useGetSubmissionStatusOfAllGroup,
+} from "../services/query";
 import GroupInfoItem from "./groupInfoItem";
 import Error from "@/components/shared/error";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,10 +17,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function GroupsData() {
   const groups = useGetAllGroups();
   const allGroups = useGetAllGroupsCoordinator();
+  const allGroupsStatus = useGetSubmissionStatusOfAllGroup();
   const session = useSession();
   const user = session?.data?.user;
   if (session.status == "loading") return null;
@@ -54,14 +60,18 @@ export default function GroupsData() {
               {/* Total number of groups */}
               <Tooltip>
                 <TooltipTrigger className="!cursor-default">
-                  <Card>
-                    <CardHeader className="p-3 text-center">
-                      <h1 className="text-body-18">Total Groups</h1>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                      <h1 className="text-title-28">1</h1>
-                    </CardContent>
-                  </Card>
+                  <Link href="/coordinator/filtered-group">
+                    <Card>
+                      <CardHeader className="p-3 text-center">
+                        <h1 className="text-body-18">Total Groups</h1>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <h1 className="text-title-28">
+                          {groups.isSuccess && groups?.data?.data?.length}
+                        </h1>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent>
                   Total Number of Groups assigned to you.
@@ -70,14 +80,19 @@ export default function GroupsData() {
               {/* Total number of groups */}
               <Tooltip>
                 <TooltipTrigger className="!cursor-default">
-                  <Card>
-                    <CardHeader className="p-3 text-center">
-                      <h1 className="text-body-18">Pending Weekly Report</h1>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                      <h1 className="text-title-28">3</h1>
-                    </CardContent>
-                  </Card>
+                  <Link href="/coordinator/filtered-group">
+                    <Card>
+                      <CardHeader className="p-3 text-center">
+                        <h1 className="text-body-18">Pending Weekly Report</h1>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                        <h1 className="text-title-28">
+                          {allGroupsStatus.isSuccess &&
+                            allGroupsStatus?.data?.data?.notSubmitted?.length}
+                        </h1>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </TooltipTrigger>
                 <TooltipContent>
                   Total Number of groups that have not submitted their weekly
@@ -102,14 +117,18 @@ export default function GroupsData() {
                 {/* Total number of groups */}
                 <Tooltip>
                   <TooltipTrigger className="!cursor-default h-full">
-                    <Card>
-                      <CardHeader className="p-3 text-center">
-                        <h1 className="text-body-18">Total Groups</h1>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <h1 className="text-title-28">1</h1>
-                      </CardContent>
-                    </Card>
+                    <Link href="/coordinator/filtered-group">
+                      <Card>
+                        <CardHeader className="p-3 text-center">
+                          <h1 className="text-body-18">Total Groups</h1>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <h1 className="text-title-28">
+                            {groups.isSuccess && groups?.data?.data?.length}
+                          </h1>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   </TooltipTrigger>
                   <TooltipContent>
                     Total Number of Groups assigned to you.
@@ -118,14 +137,21 @@ export default function GroupsData() {
                 {/* Total number of groups */}
                 <Tooltip>
                   <TooltipTrigger className="!cursor-default">
-                    <Card>
-                      <CardHeader className="p-3 text-center">
-                        <h1 className="text-body-18">Pending Weekly Report</h1>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <h1 className="text-title-28">3</h1>
-                      </CardContent>
-                    </Card>
+                    <Link href="/coordinator/filtered-group">
+                      <Card>
+                        <CardHeader className="p-3 text-center">
+                          <h1 className="text-body-18">
+                            Pending Weekly Report
+                          </h1>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <h1 className="text-title-28">
+                            {allGroupsStatus.isSuccess &&
+                              allGroupsStatus?.data?.data?.notSubmitted?.length}
+                          </h1>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   </TooltipTrigger>
                   <TooltipContent>
                     Total Number of groups that have not submitted their weekly
@@ -135,14 +161,19 @@ export default function GroupsData() {
                 {/* Total number of groups */}
                 <Tooltip>
                   <TooltipTrigger className="!cursor-default">
-                    <Card>
-                      <CardHeader className="p-3 text-center">
-                        <h1 className="text-body-18">Unlocked Groups</h1>
-                      </CardHeader>
-                      <CardContent className="text-center">
-                        <h1 className="text-title-28">3</h1>
-                      </CardContent>
-                    </Card>
+                    <Link href="/coordinator/filtered-group">
+                      <Card>
+                        <CardHeader className="p-3 text-center">
+                          <h1 className="text-body-18">Unlocked Groups</h1>
+                        </CardHeader>
+                        <CardContent className="text-center">
+                          <h1 className="text-title-28">
+                            {allGroupsStatus.isSuccess &&
+                              allGroupsStatus?.data?.data?.unlocked?.length}
+                          </h1>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   </TooltipTrigger>
                   <TooltipContent>
                     Number of groups that are not locked their groups.
