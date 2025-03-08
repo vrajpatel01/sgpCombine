@@ -9,10 +9,10 @@ import ProjectInformation from "./components/projectInformation";
 import { IoIosArrowBack } from "react-icons/io";
 import Skeleton from "react-loading-skeleton";
 import Error from "@/components/shared/error";
-import { useOneGroup } from "../../services/query";
+import { useOneGroup } from "../services/query";
 import { IoLockClosed, IoLockOpen } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
-import { useUpdateGroupLockStatus } from "../../services/mutation";
+import { useUpdateGroupLockStatus } from "../services/mutation";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 
